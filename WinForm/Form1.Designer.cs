@@ -64,13 +64,12 @@ namespace WinForm
             this.DataBoxNamn,
             this.DataBoxFrekvens,
             this.DataBoxKategori});
-            this.dataGridView1.Location = new System.Drawing.Point(17, 16);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(545, 172);
+            this.dataGridView1.Size = new System.Drawing.Size(477, 129);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -104,30 +103,27 @@ namespace WinForm
             // 
             // btnPrenumerera
             // 
-            this.btnPrenumerera.Location = new System.Drawing.Point(256, 304);
-            this.btnPrenumerera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrenumerera.Location = new System.Drawing.Point(224, 228);
             this.btnPrenumerera.Name = "btnPrenumerera";
-            this.btnPrenumerera.Size = new System.Drawing.Size(105, 31);
+            this.btnPrenumerera.Size = new System.Drawing.Size(92, 23);
             this.btnPrenumerera.TabIndex = 1;
             this.btnPrenumerera.Text = "Prenumerera";
             this.btnPrenumerera.UseVisualStyleBackColor = true;
             // 
             // btnAndra
             // 
-            this.btnAndra.Location = new System.Drawing.Point(376, 304);
-            this.btnAndra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAndra.Location = new System.Drawing.Point(329, 228);
             this.btnAndra.Name = "btnAndra";
-            this.btnAndra.Size = new System.Drawing.Size(86, 31);
+            this.btnAndra.Size = new System.Drawing.Size(75, 23);
             this.btnAndra.TabIndex = 2;
             this.btnAndra.Text = "Ändra";
             this.btnAndra.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(477, 304);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Location = new System.Drawing.Point(417, 228);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(86, 31);
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Ta bort";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -135,150 +131,157 @@ namespace WinForm
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 224);
+            this.label1.Location = new System.Drawing.Point(27, 168);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 20);
+            this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 4;
             this.label1.Text = "URL:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 224);
+            this.label2.Location = new System.Drawing.Point(224, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 20);
+            this.label2.Size = new System.Drawing.Size(125, 15);
             this.label2.TabIndex = 5;
             this.label2.Text = "Uppdateringsfrekvens:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(424, 224);
+            this.label3.Location = new System.Drawing.Point(371, 168);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 20);
+            this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "Kategori:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(31, 249);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Location = new System.Drawing.Point(27, 187);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 27);
+            this.textBox1.Size = new System.Drawing.Size(166, 23);
             this.textBox1.TabIndex = 7;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(256, 248);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Items.AddRange(new object[] {
+            "5 sekunder",
+            "30 sekunder",
+            "60 sekunder"});
+            this.comboBox1.Location = new System.Drawing.Point(224, 186);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 28);
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 8;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(424, 248);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox2.Location = new System.Drawing.Point(371, 186);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(138, 28);
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
             this.comboBox2.TabIndex = 9;
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 654);
+            this.splitter1.Size = new System.Drawing.Size(3, 490);
             this.splitter1.TabIndex = 10;
             this.splitter1.TabStop = false;
             // 
             // lbAvsnitt
             // 
             this.lbAvsnitt.FormattingEnabled = true;
-            this.lbAvsnitt.ItemHeight = 20;
-            this.lbAvsnitt.Location = new System.Drawing.Point(17, 374);
+            this.lbAvsnitt.ItemHeight = 15;
+            this.lbAvsnitt.Location = new System.Drawing.Point(15, 280);
+            this.lbAvsnitt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbAvsnitt.Name = "lbAvsnitt";
             this.lbAvsnitt.ScrollAlwaysVisible = true;
-            this.lbAvsnitt.Size = new System.Drawing.Size(292, 224);
+            this.lbAvsnitt.Size = new System.Drawing.Size(256, 169);
             this.lbAvsnitt.TabIndex = 11;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(327, 409);
+            this.textBox2.Location = new System.Drawing.Point(286, 307);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(555, 189);
+            this.textBox2.Size = new System.Drawing.Size(486, 143);
             this.textBox2.TabIndex = 12;
             // 
             // lblAvsnitt
             // 
             this.lblAvsnitt.AutoSize = true;
-            this.lblAvsnitt.Location = new System.Drawing.Point(329, 374);
+            this.lblAvsnitt.Location = new System.Drawing.Point(288, 280);
             this.lblAvsnitt.Name = "lblAvsnitt";
-            this.lblAvsnitt.Size = new System.Drawing.Size(0, 20);
+            this.lblAvsnitt.Size = new System.Drawing.Size(0, 15);
             this.lblAvsnitt.TabIndex = 13;
             // 
             // lbKategorier
             // 
             this.lbKategorier.FormattingEnabled = true;
-            this.lbKategorier.ItemHeight = 20;
-            this.lbKategorier.Location = new System.Drawing.Point(623, 16);
+            this.lbKategorier.ItemHeight = 15;
+            this.lbKategorier.Location = new System.Drawing.Point(545, 12);
+            this.lbKategorier.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbKategorier.Name = "lbKategorier";
-            this.lbKategorier.Size = new System.Drawing.Size(260, 164);
+            this.lbKategorier.Size = new System.Drawing.Size(228, 124);
             this.lbKategorier.TabIndex = 14;
             // 
             // btnLaggTill
             // 
-            this.btnLaggTill.Location = new System.Drawing.Point(623, 258);
+            this.btnLaggTill.Location = new System.Drawing.Point(545, 194);
+            this.btnLaggTill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLaggTill.Name = "btnLaggTill";
-            this.btnLaggTill.Size = new System.Drawing.Size(91, 31);
+            this.btnLaggTill.Size = new System.Drawing.Size(80, 23);
             this.btnLaggTill.TabIndex = 15;
             this.btnLaggTill.Text = "Lägg till";
             this.btnLaggTill.UseVisualStyleBackColor = true;
             // 
             // btnAndra2
             // 
-            this.btnAndra2.Location = new System.Drawing.Point(720, 258);
+            this.btnAndra2.Location = new System.Drawing.Point(630, 194);
+            this.btnAndra2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAndra2.Name = "btnAndra2";
-            this.btnAndra2.Size = new System.Drawing.Size(79, 31);
+            this.btnAndra2.Size = new System.Drawing.Size(69, 23);
             this.btnAndra2.TabIndex = 16;
             this.btnAndra2.Text = "Ändra";
             this.btnAndra2.UseVisualStyleBackColor = true;
             // 
             // btnDelete2
             // 
-            this.btnDelete2.Location = new System.Drawing.Point(805, 258);
+            this.btnDelete2.Location = new System.Drawing.Point(704, 194);
+            this.btnDelete2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete2.Name = "btnDelete2";
-            this.btnDelete2.Size = new System.Drawing.Size(77, 31);
+            this.btnDelete2.Size = new System.Drawing.Size(67, 23);
             this.btnDelete2.TabIndex = 17;
             this.btnDelete2.Text = "Ta bort";
             this.btnDelete2.UseVisualStyleBackColor = true;
             // 
             // tbKategori
             // 
-            this.tbKategori.Location = new System.Drawing.Point(623, 221);
+            this.tbKategori.Location = new System.Drawing.Point(545, 166);
+            this.tbKategori.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbKategori.Name = "tbKategori";
-            this.tbKategori.Size = new System.Drawing.Size(174, 27);
+            this.tbKategori.Size = new System.Drawing.Size(153, 23);
             this.tbKategori.TabIndex = 18;
             // 
             // lblKategori
             // 
             this.lblKategori.AutoSize = true;
-            this.lblKategori.Location = new System.Drawing.Point(623, 198);
+            this.lblKategori.Location = new System.Drawing.Point(545, 148);
             this.lblKategori.Name = "lblKategori";
-            this.lblKategori.Size = new System.Drawing.Size(52, 20);
+            this.lblKategori.Size = new System.Drawing.Size(43, 15);
             this.lblKategori.TabIndex = 19;
             this.lblKategori.Text = "Namn:";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 654);
+            this.ClientSize = new System.Drawing.Size(800, 490);
             this.Controls.Add(this.lblKategori);
             this.Controls.Add(this.tbKategori);
             this.Controls.Add(this.btnDelete2);
@@ -299,7 +302,6 @@ namespace WinForm
             this.Controls.Add(this.btnAndra);
             this.Controls.Add(this.btnPrenumerera);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
