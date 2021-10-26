@@ -19,7 +19,6 @@ namespace WinForm
         {
             InitializeComponent();
             skapaIntervaller.CreateTimers();
-            Debug.WriteLine("Hello world");
             skapaIntervaller.testTimer();
         }
 
@@ -27,5 +26,12 @@ namespace WinForm
         {
 
         }
+
+        private void btnPrenumerera_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+       
     }
 }

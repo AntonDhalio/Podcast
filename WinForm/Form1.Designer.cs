@@ -40,9 +40,9 @@ namespace WinForm
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBoxURL = new System.Windows.Forms.TextBox();
+            this.comboBoxFrekvens = new System.Windows.Forms.ComboBox();
+            this.comboBoxKategori = new System.Windows.Forms.ComboBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -109,6 +109,7 @@ namespace WinForm
             this.btnPrenumerera.TabIndex = 1;
             this.btnPrenumerera.Text = "Prenumerera";
             this.btnPrenumerera.UseVisualStyleBackColor = true;
+            this.btnPrenumerera.Click += new System.EventHandler(this.btnPrenumerera_Click);
             // 
             // btnAndra
             // 
@@ -155,32 +156,32 @@ namespace WinForm
             this.label3.TabIndex = 6;
             this.label3.Text = "Kategori:";
             // 
-            // textBox1
+            // textBoxURL
             // 
-            this.textBox1.Location = new System.Drawing.Point(27, 187);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 23);
-            this.textBox1.TabIndex = 7;
+            this.textBoxURL.Location = new System.Drawing.Point(27, 187);
+            this.textBoxURL.Name = "textBoxURL";
+            this.textBoxURL.Size = new System.Drawing.Size(166, 23);
+            this.textBoxURL.TabIndex = 7;
             // 
-            // comboBox1
+            // comboBoxFrekvens
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxFrekvens.FormattingEnabled = true;
+            this.comboBoxFrekvens.Items.AddRange(new object[] {
             "5 sekunder",
             "30 sekunder",
             "60 sekunder"});
-            this.comboBox1.Location = new System.Drawing.Point(224, 186);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 8;
+            this.comboBoxFrekvens.Location = new System.Drawing.Point(224, 186);
+            this.comboBoxFrekvens.Name = "comboBoxFrekvens";
+            this.comboBoxFrekvens.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxFrekvens.TabIndex = 8;
             // 
-            // comboBox2
+            // comboBoxKategori
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(371, 186);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 9;
+            this.comboBoxKategori.FormattingEnabled = true;
+            this.comboBoxKategori.Location = new System.Drawing.Point(371, 186);
+            this.comboBoxKategori.Name = "comboBoxKategori";
+            this.comboBoxKategori.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxKategori.TabIndex = 9;
             // 
             // splitter1
             // 
@@ -292,9 +293,9 @@ namespace WinForm
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.lbAvsnitt);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBoxKategori);
+            this.Controls.Add(this.comboBoxFrekvens);
+            this.Controls.Add(this.textBoxURL);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -323,9 +324,9 @@ namespace WinForm
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBoxURL;
+        private System.Windows.Forms.ComboBox comboBoxFrekvens;
+        private System.Windows.Forms.ComboBox comboBoxKategori;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.TextBox textBox2;

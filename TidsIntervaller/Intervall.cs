@@ -8,6 +8,9 @@ namespace TidsIntervaller
 {
     public class Inervall
     {
+        public delegate void UpdatePodcasts();
+        public static event UpdatePodcasts TimerAvklarad;
+
         public static Timer shortTimer;
         public static Timer mediumTimer;
         public static Timer longTimer;
@@ -28,11 +31,26 @@ namespace TidsIntervaller
         }
         public void testTimer()
         {
-            shortTimer.Elapsed += OnTimedEvent;
+            shortTimer.Elapsed += OnTimedEvent1;
+            mediumTimer.Elapsed += OnTimedEvent2;
+            longTimer.Elapsed += OnTimedEvent3;
         }
-        private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        public static void OnTimedEvent1(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 5 sekunder");
+            TimerAvklarad();
+        }
+
+        public static void OnTimedEvent2(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            Debug.WriteLine("Det har gått 30 sekunder");
+            TimerAvklarad();
+        }
+
+        public static void OnTimedEvent3(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            Debug.WriteLine("Det har gått 60 sekunder");
+            TimerAvklarad();
         }
     }
 }
