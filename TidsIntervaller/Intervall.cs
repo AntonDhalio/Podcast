@@ -29,7 +29,7 @@ namespace TidsIntervaller
             longTimer.Interval = 1000 * 60;
             longTimer.Enabled = true;
         }
-        public void testTimer()
+        public void activateTimer()
         {
             shortTimer.Elapsed += OnTimedEvent1;
             mediumTimer.Elapsed += OnTimedEvent2;
@@ -38,19 +38,19 @@ namespace TidsIntervaller
         public static void OnTimedEvent1(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 5 sekunder");
-            TimerAvklarad();
+            // TimerAvklarad();
         }
 
         public static void OnTimedEvent2(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 30 sekunder");
-            TimerAvklarad();
+            // TimerAvklarad();
         }
 
         public static void OnTimedEvent3(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 60 sekunder");
-            TimerAvklarad();
+            // TimerAvklarad();
         }
     }
 }
