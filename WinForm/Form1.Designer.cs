@@ -42,7 +42,7 @@ namespace WinForm
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.comboBoxFrekvens = new System.Windows.Forms.ComboBox();
-            this.comboBoxKategori = new System.Windows.Forms.ComboBox();
+            this.cbKategorier = new System.Windows.Forms.ComboBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -175,13 +175,13 @@ namespace WinForm
             this.comboBoxFrekvens.Size = new System.Drawing.Size(121, 23);
             this.comboBoxFrekvens.TabIndex = 8;
             // 
-            // comboBoxKategori
+            // cbKategorier
             // 
-            this.comboBoxKategori.FormattingEnabled = true;
-            this.comboBoxKategori.Location = new System.Drawing.Point(371, 186);
-            this.comboBoxKategori.Name = "comboBoxKategori";
-            this.comboBoxKategori.Size = new System.Drawing.Size(121, 23);
-            this.comboBoxKategori.TabIndex = 9;
+            this.cbKategorier.FormattingEnabled = true;
+            this.cbKategorier.Location = new System.Drawing.Point(371, 186);
+            this.cbKategorier.Name = "cbKategorier";
+            this.cbKategorier.Size = new System.Drawing.Size(121, 23);
+            this.cbKategorier.TabIndex = 9;
             // 
             // splitter1
             // 
@@ -240,6 +240,7 @@ namespace WinForm
             this.btnLaggTill.TabIndex = 15;
             this.btnLaggTill.Text = "Lägg till";
             this.btnLaggTill.UseVisualStyleBackColor = true;
+            this.btnLaggTill.Click += new System.EventHandler(this.btnLaggTill_Click_1);
             // 
             // btnAndra2
             // 
@@ -250,6 +251,7 @@ namespace WinForm
             this.btnAndra2.TabIndex = 16;
             this.btnAndra2.Text = "Ändra";
             this.btnAndra2.UseVisualStyleBackColor = true;
+            this.btnAndra2.Click += new System.EventHandler(this.btnAndra2_Click_1);
             // 
             // btnDelete2
             // 
@@ -260,6 +262,7 @@ namespace WinForm
             this.btnDelete2.TabIndex = 17;
             this.btnDelete2.Text = "Ta bort";
             this.btnDelete2.UseVisualStyleBackColor = true;
+            this.btnDelete2.Click += new System.EventHandler(this.btnDelete2_Click_1);
             // 
             // tbKategori
             // 
@@ -293,7 +296,7 @@ namespace WinForm
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.lbAvsnitt);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.comboBoxKategori);
+            this.Controls.Add(this.cbKategorier);
             this.Controls.Add(this.comboBoxFrekvens);
             this.Controls.Add(this.textBoxURL);
             this.Controls.Add(this.label3);
@@ -326,7 +329,7 @@ namespace WinForm
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxURL;
         private System.Windows.Forms.ComboBox comboBoxFrekvens;
-        private System.Windows.Forms.ComboBox comboBoxKategori;
+        private System.Windows.Forms.ComboBox cbKategorier;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.TextBox textBox2;
