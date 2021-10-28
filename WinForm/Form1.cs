@@ -153,7 +153,7 @@ namespace WinForm
 
         private void btnAndra2_Click_1(object sender, EventArgs e)
         {
-            if (lbKategorier.SelectedItem != null && tbKategori.Text != null)
+            if (lbKategorier.SelectedItem != null && tbKategori.Text.Length != 0)
             {
                 String namn = lbKategorier.SelectedItem.ToString();
                 var fraga = from Kategori enKat in kategorier

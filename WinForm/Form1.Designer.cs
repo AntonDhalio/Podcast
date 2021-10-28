@@ -29,7 +29,7 @@ namespace WinForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.btnPrenumerera = new System.Windows.Forms.Button();
             this.btnAndra = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -246,10 +246,11 @@ namespace WinForm
             this.listNamn,
             this.listFrekvens,
             this.listKategori});
+            this.listViewPodd.FullRowSelect = true;
             this.listViewPodd.GridLines = true;
             this.listViewPodd.HideSelection = false;
             this.listViewPodd.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listViewPodd.Location = new System.Drawing.Point(27, 12);
             this.listViewPodd.Name = "listViewPodd";
             this.listViewPodd.Size = new System.Drawing.Size(465, 128);
