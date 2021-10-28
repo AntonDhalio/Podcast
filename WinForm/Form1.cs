@@ -113,6 +113,16 @@ namespace WinForm
             SerializeraPodcast serializering = new SerializeraPodcast();
             serializering.Serializera(podcasts);
             LaddaListaPodcast();
+            textBoxURL.Clear();
+            
+        }
+        private void btnAndra_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)

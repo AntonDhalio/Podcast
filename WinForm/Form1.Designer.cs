@@ -29,7 +29,7 @@ namespace WinForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
             this.btnPrenumerera = new System.Windows.Forms.Button();
             this.btnAndra = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -74,6 +74,7 @@ namespace WinForm
             this.btnAndra.TabIndex = 2;
             this.btnAndra.Text = "Ändra";
             this.btnAndra.UseVisualStyleBackColor = true;
+            this.btnAndra.Click += new System.EventHandler(this.btnAndra_Click);
             // 
             // btnDelete
             // 
@@ -83,6 +84,7 @@ namespace WinForm
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Ta bort";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label1
             // 
@@ -247,7 +249,7 @@ namespace WinForm
             this.listViewPodd.GridLines = true;
             this.listViewPodd.HideSelection = false;
             this.listViewPodd.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listViewPodd.Location = new System.Drawing.Point(27, 12);
             this.listViewPodd.Name = "listViewPodd";
             this.listViewPodd.Size = new System.Drawing.Size(465, 128);
