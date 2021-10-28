@@ -29,11 +29,7 @@ namespace WinForm
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.DataBoxAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataBoxNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataBoxFrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataBoxKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.btnPrenumerera = new System.Windows.Forms.Button();
             this.btnAndra = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -53,53 +49,12 @@ namespace WinForm
             this.btnDelete2 = new System.Windows.Forms.Button();
             this.tbKategori = new System.Windows.Forms.TextBox();
             this.lblKategori = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.listViewPodd = new System.Windows.Forms.ListView();
+            this.listAvsnitt = new System.Windows.Forms.ColumnHeader();
+            this.listNamn = new System.Windows.Forms.ColumnHeader();
+            this.listFrekvens = new System.Windows.Forms.ColumnHeader();
+            this.listKategori = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DataBoxAvsnitt,
-            this.DataBoxNamn,
-            this.DataBoxFrekvens,
-            this.DataBoxKategori});
-            this.dataGridView1.Location = new System.Drawing.Point(15, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(477, 129);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // DataBoxAvsnitt
-            // 
-            this.DataBoxAvsnitt.HeaderText = "Avsnitt";
-            this.DataBoxAvsnitt.MinimumWidth = 6;
-            this.DataBoxAvsnitt.Name = "DataBoxAvsnitt";
-            this.DataBoxAvsnitt.Width = 70;
-            // 
-            // DataBoxNamn
-            // 
-            this.DataBoxNamn.HeaderText = "Namn";
-            this.DataBoxNamn.MinimumWidth = 6;
-            this.DataBoxNamn.Name = "DataBoxNamn";
-            this.DataBoxNamn.Width = 200;
-            // 
-            // DataBoxFrekvens
-            // 
-            this.DataBoxFrekvens.HeaderText = "Frekvens";
-            this.DataBoxFrekvens.MinimumWidth = 6;
-            this.DataBoxFrekvens.Name = "DataBoxFrekvens";
-            this.DataBoxFrekvens.Width = 125;
-            // 
-            // DataBoxKategori
-            // 
-            this.DataBoxKategori.HeaderText = "Kategori";
-            this.DataBoxKategori.MinimumWidth = 6;
-            this.DataBoxKategori.Name = "DataBoxKategori";
-            this.DataBoxKategori.Width = 125;
             // 
             // btnPrenumerera
             // 
@@ -281,11 +236,51 @@ namespace WinForm
             this.lblKategori.TabIndex = 19;
             this.lblKategori.Text = "Namn:";
             // 
+            // listViewPodd
+            // 
+            this.listViewPodd.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listViewPodd.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listAvsnitt,
+            this.listNamn,
+            this.listFrekvens,
+            this.listKategori});
+            this.listViewPodd.GridLines = true;
+            this.listViewPodd.HideSelection = false;
+            this.listViewPodd.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listViewPodd.Location = new System.Drawing.Point(27, 12);
+            this.listViewPodd.Name = "listViewPodd";
+            this.listViewPodd.Size = new System.Drawing.Size(465, 128);
+            this.listViewPodd.TabIndex = 20;
+            this.listViewPodd.UseCompatibleStateImageBehavior = false;
+            this.listViewPodd.View = System.Windows.Forms.View.Details;
+            // 
+            // listAvsnitt
+            // 
+            this.listAvsnitt.Text = "Avsnitt";
+            this.listAvsnitt.Width = 80;
+            // 
+            // listNamn
+            // 
+            this.listNamn.Text = "Namn";
+            this.listNamn.Width = 180;
+            // 
+            // listFrekvens
+            // 
+            this.listFrekvens.Text = "Frekvens";
+            this.listFrekvens.Width = 100;
+            // 
+            // listKategori
+            // 
+            this.listKategori.Text = "Kategori";
+            this.listKategori.Width = 100;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 490);
+            this.Controls.Add(this.listViewPodd);
             this.Controls.Add(this.lblKategori);
             this.Controls.Add(this.tbKategori);
             this.Controls.Add(this.btnDelete2);
@@ -305,22 +300,14 @@ namespace WinForm
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAndra);
             this.Controls.Add(this.btnPrenumerera);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataBoxAvsnitt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataBoxNamn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataBoxFrekvens;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataBoxKategori;
         private System.Windows.Forms.Button btnPrenumerera;
         private System.Windows.Forms.Button btnAndra;
         private System.Windows.Forms.Button btnDelete;
@@ -340,6 +327,11 @@ namespace WinForm
         private System.Windows.Forms.Button btnDelete2;
         private System.Windows.Forms.TextBox tbKategori;
         private System.Windows.Forms.Label lblKategori;
+        private System.Windows.Forms.ListView listViewPodd;
+        private System.Windows.Forms.ColumnHeader listAvsnitt;
+        private System.Windows.Forms.ColumnHeader listNamn;
+        private System.Windows.Forms.ColumnHeader listFrekvens;
+        private System.Windows.Forms.ColumnHeader listKategori;
     }
 }
 

@@ -24,12 +24,14 @@ namespace WinForm
             InitializeComponent();
             skapaIntervaller.CreateTimers();
             skapaIntervaller.activateTimer();
-            LaddaLista();
+            LaddaListaKategori();
+            LaddaListaPodcast();
         }
 
         List<Kategori> kategorier = new List<Kategori>();
+        List<RSS> podcasts = new List<RSS>();
 
-        public void LaddaLista()
+        public void LaddaListaKategori()
         {
             if (File.Exists("Kategorier.xml"))
             {
@@ -38,6 +40,7 @@ namespace WinForm
                 kategorier = xmlSerializering.DeserializeraLista();
                 UppdateralbKategorier();
                 UppdateraCbKategorier();
+                
             }
             else
             {
@@ -68,26 +71,74 @@ namespace WinForm
                 }
             }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void LaddaListaPodcast()
         {
-
+            if (File.Exists("PodcastLista.xml"))
+            {
+                podcasts.Clear();
+                SerializeraPodcast xmlSerializering = new SerializeraPodcast();
+                podcasts = xmlSerializering.DeserializeraLista();
+                UppdateraListView();
+            }
+            else
+            {
+                
+            }
+        }
+        public void UppdateraListView()
+        {
+            listViewPodd.Items.Clear();
+            if(podcasts != null)
+            {
+                foreach (RSS podd in podcasts)
+                {
+                    ListViewItem newItem = new ListViewItem(podd.antalAvsnitt);
+                    newItem.SubItems.Add(podd.namn);
+                    newItem.SubItems.Add(podd.tidsIntervall);
+                    newItem.SubItems.Add(podd.kategori);
+                    listViewPodd.Items.Add(newItem);                    
+                }
+            }
         }
 
         private void btnPrenumerera_Click(object sender, EventArgs e)
-        {            
-            test.FileStreamer(textBoxURL.Text);
+        {
+            RSS podcast = new RSS();
+            podcast.url = textBoxURL.Text;
+            podcast.tidsIntervall = comboBoxFrekvens.Text;
+            podcast.kategori = cbKategorier.Text;
+            podcast.namn = podcast.PodcastNamn(textBoxURL.Text);
+            podcast.antalAvsnitt = podcast.AntalAvsnitt(textBoxURL.Text);
+            podcasts.Add(podcast);
+            SerializeraPodcast serializering = new SerializeraPodcast();
+            serializering.Serializera(podcasts);
+            LaddaListaPodcast();
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
         {
-            Kategori kategori = new Kategori();
-            kategori.namn = tbKategori.Text;
-            kategorier.Add(kategori);
-            SerializeraKategori serializering = new SerializeraKategori();
-            serializering.Serializera(kategorier);
-            LaddaLista();
-            tbKategori.Clear();
+            bool namnLedigt = true;
+            foreach (Kategori enKat in kategorier)
+            {
+                if (tbKategori.Text.ToLower().Equals(enKat.namn.ToLower()))
+                {
+                    namnLedigt = false;
+                }
+            }
+            if (namnLedigt)
+            {
+                Kategori kategori = new Kategori();
+                kategori.namn = tbKategori.Text;
+                kategorier.Add(kategori);
+                SerializeraKategori serializering = new SerializeraKategori();
+                serializering.Serializera(kategorier);
+                LaddaListaKategori();
+                tbKategori.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Kategorinamnet finns redan, vänlig välj ett annat");
+            }
         }
 
         private void btnAndra2_Click_1(object sender, EventArgs e)
@@ -104,7 +155,7 @@ namespace WinForm
                 }
                 SerializeraKategori serializering = new SerializeraKategori();
                 serializering.Serializera(kategorier);
-                LaddaLista();
+                LaddaListaKategori();
                 tbKategori.Clear();
             }
             else
@@ -117,13 +168,29 @@ namespace WinForm
         {
             if (lbKategorier.SelectedItem != null)
             {
-                //String namn = lbKategorier.SelectedItem.ToString();
-                //var fraga = from Kategori enKat in kategorier
-                //            where enKat.namn == namn
-                //            select enKat;
-                SerializeraKategori serializering = new SerializeraKategori();
-                serializering.Serializera(kategorier);
-                LaddaLista();
+                DialogResult resultat;
+                resultat = MessageBox.Show("Är du säker på att du vill radera kategorin " + lbKategorier.SelectedItem.ToString()
+                    + "? Alla sparade poddar med kategorin kommer också att raderas.", "Är du säker?", MessageBoxButtons.YesNo);
+                if (resultat == DialogResult.Yes)
+                {
+                    String namn = lbKategorier.SelectedItem.ToString();
+                    var fraga = from Kategori enKat in kategorier
+                                where enKat.namn == namn
+                                select enKat;
+                    Kategori attTabort = null;
+                    foreach (Kategori enKat in fraga)
+                    {
+                        attTabort = enKat;
+                    }
+                    kategorier.Remove(attTabort);
+                    SerializeraKategori serializering = new SerializeraKategori();
+                    serializering.Serializera(kategorier);
+                    LaddaListaKategori();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Välj en kategori i listan att ta bort");
             }
         }
     }
