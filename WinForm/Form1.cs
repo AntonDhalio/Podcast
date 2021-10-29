@@ -178,7 +178,7 @@ namespace WinForm
             }
             else
             {
-                MessageBox.Show("Välj en kategori ut listan och skriv det nya namnet innan du trycker på ändra.");
+                MessageBox.Show("Välj en kategori ur listan och skriv det nya namnet innan du trycker på ändra.");
             }
         }
 
