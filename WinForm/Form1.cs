@@ -1,6 +1,7 @@
 ﻿using TidsIntervaller;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -26,10 +27,11 @@ namespace WinForm
             skapaIntervaller.activateTimer();
             LaddaListaKategori();
             LaddaListaPodcast();
+            listViewPodd.Sorting = SortOrder.Ascending;
         }
 
         List<Kategori> kategorier = new List<Kategori>();
-        List<RSS> podcasts = new List<RSS>();
+        List<RSS> podcasts = new List<RSS>();       
 
         public void LaddaListaKategori()
         {
@@ -92,8 +94,8 @@ namespace WinForm
             {
                 foreach (RSS podd in podcasts)
                 {
-                    ListViewItem newItem = new ListViewItem(podd.antalAvsnitt);
-                    newItem.SubItems.Add(podd.namn);
+                    ListViewItem newItem = new ListViewItem(podd.namn);
+                    newItem.SubItems.Add(podd.antalAvsnitt);
                     newItem.SubItems.Add(podd.tidsIntervall);
                     newItem.SubItems.Add(podd.kategori);
                     listViewPodd.Items.Add(newItem);                    
@@ -118,7 +120,7 @@ namespace WinForm
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
-
+            
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -201,6 +203,13 @@ namespace WinForm
             else
             {
                 MessageBox.Show("Välj en kategori i listan att ta bort");
+            }
+        }
+      public void UppdateraPodcast()
+        {
+            if (File.Exists("PodcastLista.xml"))
+            {               
+                
             }
         }
     }
