@@ -178,26 +178,34 @@ namespace WinForm
 
         private void btnDelete2_Click_1(object sender, EventArgs e)
         {
-            if (lbKategorier.SelectedItem != null)
+            if (lbKategorier.SelectedItem != null && lbKategorier.SelectedIndex != 0)
             {
                 DialogResult resultat;
                 resultat = MessageBox.Show("Är du säker på att du vill radera kategorin " + lbKategorier.SelectedItem.ToString()
                     + "? Alla sparade poddar med kategorin kommer också att raderas.", "Är du säker?", MessageBoxButtons.YesNo);
                 if (resultat == DialogResult.Yes)
                 {
+                    SerializeraPodcast serializering1 = new SerializeraPodcast();
+                    List<RSS> allaPoddar = serializering1.DeserializeraLista();
                     String namn = lbKategorier.SelectedItem.ToString();
-                    var fraga = from Kategori enKat in kategorier
-                                where enKat.namn == namn
-                                select enKat;
-                    Kategori attTabort = null;
-                    foreach (Kategori enKat in fraga)
+                    Kategori attTabort = (from Kategori enKat in kategorier
+                                          where enKat.namn == namn
+                                          select enKat).Single();
+                    var poddarAttBehalla = from RSS podd in allaPoddar
+                                           where podd.kategori != namn
+                                           select podd;
+                    List<RSS> tillfallig = new List<RSS>();
+                    foreach (RSS enPodd in poddarAttBehalla)
                     {
-                        attTabort = enKat;
+                        tillfallig.Add(enPodd);
                     }
+                    podcasts = tillfallig;
                     kategorier.Remove(attTabort);
                     SerializeraKategori serializering = new SerializeraKategori();
                     serializering.Serializera(kategorier);
+                    serializering1.Serializera(podcasts);
                     LaddaListaKategori();
+                    LaddaListaPodcast();
                 }
             }
             else
