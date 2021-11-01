@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 
-namespace Validation
+namespace WinForm
+
 {
     public class KategoriValidering
     {
-        public KategoriValidering(string input) 
+        public KategoriValidering(string input)
         {
-            if(string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
             {
 
                 throw new EmptyInputException();
@@ -18,9 +21,9 @@ namespace Validation
             {
                 throw new NumberSignException();
             }
-        }   
-            
-    } 
+        }
+
+    }
 
     public class UrlValidering
     {
@@ -31,10 +34,15 @@ namespace Validation
                 throw new EmptyInputException();
             }
 
+           // if (SelectedIndex == -1)
+           // {
+             //   throw new EmptyInputException();
+         //   }
+
             // Kollar om url är en http isf kasta ett exception om att man måste ha https
             Uri uriResult;
             bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult);
-                
+
             if (!result)
             {
                 throw new UrlException("Adressen är ingen giltig URL");
@@ -43,9 +51,10 @@ namespace Validation
             {
                 throw new UrlException("Adressen måste vara Https");
             }
-           
-        }   
-            
+
+        }
+
     }
 
 }
+
