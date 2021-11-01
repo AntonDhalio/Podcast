@@ -130,6 +130,31 @@ namespace WinForm
 
         private void btnPrenumerera_Click(object sender, EventArgs e)
         {
+            string urlPodcast = textBoxURL.Text;
+
+            try
+            {
+                new UrlValidering(urlPodcast);
+
+                //Validera uppdateringsfekvens o kategori
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+            var uppdateringsFrekvens = comboBoxFrekvens.SelectedItem.ToString();
+
+            try
+            {
+                new UrlValidering(uppdateringsFrekvens);
+
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
             RSS podcast = new RSS
             {
                 url = textBoxURL.Text,
@@ -467,37 +492,5 @@ namespace WinForm
                 MessageBox.Show(exception.Message);
             }
         }
-
-        private void btnPrenumerera_Click(object sender, EventArgs e)
-        {
-            
-            string urlPodcast = tbUrl.Text;
-
-            try
-            {
-                new UrlValidering(urlPodcast);
-
-                //Validera uppdateringsfekvens o kategori
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-                var uppdateringsFrekvens = comboBox1.SelectedItem.ToString();
-
-            try
-            {
-                new UrlValidering(uppdateringsFrekvens);
-
-                
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-
     }
 }
