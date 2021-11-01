@@ -314,8 +314,6 @@ namespace WinForm
                 podcasts = tillfallig;
                 UppdateraListView();
             }
-
-
         }
 
 
@@ -342,7 +340,6 @@ namespace WinForm
                     };
                     avsnitt.Add(ettAvsnitt);
                     lbAvsnitt.Items.Add(ettAvsnitt.AvsnittsNamn);
-
                 }
             }
         }
