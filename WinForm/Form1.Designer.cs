@@ -50,8 +50,8 @@ namespace WinForm
             this.tbKategori = new System.Windows.Forms.TextBox();
             this.lblKategori = new System.Windows.Forms.Label();
             this.listViewPodd = new System.Windows.Forms.ListView();
-            this.listAvsnitt = new System.Windows.Forms.ColumnHeader();
             this.listNamn = new System.Windows.Forms.ColumnHeader();
+            this.listAvsnitt = new System.Windows.Forms.ColumnHeader();
             this.listFrekvens = new System.Windows.Forms.ColumnHeader();
             this.listKategori = new System.Windows.Forms.ColumnHeader();
             this.lblKatLista = new System.Windows.Forms.Label();
@@ -249,8 +249,8 @@ namespace WinForm
             // 
             this.listViewPodd.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewPodd.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.listAvsnitt,
             this.listNamn,
+            this.listAvsnitt,
             this.listFrekvens,
             this.listKategori});
             this.listViewPodd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -269,15 +269,15 @@ namespace WinForm
             this.listViewPodd.View = System.Windows.Forms.View.Details;
             this.listViewPodd.SelectedIndexChanged += new System.EventHandler(this.listViewPodd_SelectedIndexChanged);
             // 
-            // listAvsnitt
-            // 
-            this.listAvsnitt.Text = "Avsnitt";
-            this.listAvsnitt.Width = 80;
-            // 
             // listNamn
             // 
             this.listNamn.Text = "Namn";
             this.listNamn.Width = 180;
+            // 
+            // listAvsnitt
+            // 
+            this.listAvsnitt.Text = "Avsnitt";
+            this.listAvsnitt.Width = 80;
             // 
             // listFrekvens
             // 
@@ -393,8 +393,8 @@ namespace WinForm
         private System.Windows.Forms.TextBox tbKategori;
         private System.Windows.Forms.Label lblKategori;
         private System.Windows.Forms.ListView listViewPodd;
-        private System.Windows.Forms.ColumnHeader listAvsnitt;
         private System.Windows.Forms.ColumnHeader listNamn;
+        private System.Windows.Forms.ColumnHeader listAvsnitt;
         private System.Windows.Forms.ColumnHeader listFrekvens;
         private System.Windows.Forms.ColumnHeader listKategori;
         private System.Windows.Forms.Label lblKatLista;

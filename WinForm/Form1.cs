@@ -1,6 +1,6 @@
-﻿using TidsIntervaller;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -11,28 +11,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Xml;
+using System.Xml.Linq;
 using System.ServiceModel.Syndication;
+using System.Xml.Serialization;
+using System.Threading;
+
 
 namespace WinForm
 {
     public partial class Form1 : Form
     {
-        static Inervall skapaIntervaller = new Inervall();
-  
-        RSS test = new RSS();       
-       
-        public Form1()
-        {
-            InitializeComponent();
-            skapaIntervaller.CreateTimers();
-            skapaIntervaller.activateTimer();
-            LaddaListaKategori();
-            LaddaListaPodcast();
-        }
-
+        Intervall intervaller = new Intervall();
         List<Kategori> kategorier = new List<Kategori>();
         List<RSS> podcasts = new List<RSS>();
         List<Avsnitt> avsnitt = new List<Avsnitt>();
+        
+        public Form1()
+        {
+            InitializeComponent();
+            intervaller.CreateTimers();
+            intervaller.activateTimer();
+            LaddaListaKategori();
+            LaddaListaPodcast();
+            listViewPodd.Sorting = SortOrder.Ascending;
+            intervaller.TimerAvklaradShort += UppdateraPodcastXml;
+            intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
+            intervaller.TimerAvklaradLong += UppdateraPodcastXml;
+        }     
+
 
         public void LaddaListaKategori()
         {
@@ -89,6 +95,22 @@ namespace WinForm
                 
             }
         }
+        public void UppdateraListViewContent()
+        {
+            SerializeraPodcast serializering = new SerializeraPodcast();
+            podcasts = serializering.DeserializeraLista();
+            foreach (RSS podd in podcasts)
+            {
+                string namn = podd.namn;
+                var item = this.listViewPodd.FindItemWithText(namn);
+                if(this.listViewPodd.FindItemWithText(namn) != null)
+                {
+                    item.SubItems[1].Text = podd.antalAvsnitt;
+                }
+                
+            }
+            Debug.WriteLine("Uppdaterad");
+        }
         public void UppdateraListView()
         {
             listViewPodd.Items.Clear();
@@ -96,11 +118,11 @@ namespace WinForm
             {
                 foreach (RSS podd in podcasts)
                 {
-                    ListViewItem newItem = new ListViewItem(podd.antalAvsnitt);
-                    newItem.SubItems.Add(podd.namn);
+                    ListViewItem newItem = new ListViewItem(podd.namn);
+                    newItem.SubItems.Add(podd.antalAvsnitt);
                     newItem.SubItems.Add(podd.tidsIntervall);
                     newItem.SubItems.Add(podd.kategori);
-                    listViewPodd.Items.Add(newItem);                    
+                    listViewPodd.Items.Add(newItem);
                 }
             }
         }
@@ -124,11 +146,11 @@ namespace WinForm
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
-
+           
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
@@ -203,8 +225,9 @@ namespace WinForm
                     List<RSS> allaPoddar = serializering1.DeserializeraLista();
                     String namn = lbKategorier.SelectedItem.ToString();
                     Kategori attTabort = (from Kategori enKat in kategorier
-                                         where enKat.namn == namn
-                                         select enKat).Single();
+                                          where enKat.namn == namn
+                                          select enKat).Single();
+
                     var poddarAttBehalla = from RSS podd in allaPoddar
                                            where podd.kategori != namn
                                            select podd;
@@ -227,6 +250,47 @@ namespace WinForm
                 MessageBox.Show("Välj en kategori i listan att ta bort");
             }
         }
+
+        public void UppdateraPodcastXml(string intervall)
+        {
+            try {
+                SerializeraPodcast serializering = new SerializeraPodcast();
+                List<RSS> allaPoddar = serializering.DeserializeraLista();
+                var skaEjUppdateras = from RSS podd in allaPoddar
+                                      where podd.tidsIntervall != intervall
+                                      select podd;
+                var skaUppdateras = from RSS podd in allaPoddar
+                                    where podd.tidsIntervall == intervall
+                                    select podd;
+                List<RSS> tillfallig = new List<RSS>();
+                foreach (RSS enPodd in skaEjUppdateras)
+                {
+                    tillfallig.Add(enPodd);
+                }
+                foreach (RSS podd in skaUppdateras)
+                {
+                    RSS podcast = new RSS();
+                    podcast.url = podd.url;
+                    podcast.tidsIntervall = podd.tidsIntervall;
+                    podcast.kategori = podd.kategori;
+                    podcast.namn = podd.namn;
+                    podcast.antalAvsnitt = podcast.AntalAvsnitt(podd.url);
+                    tillfallig.Add(podcast);
+
+                }
+                podcasts = tillfallig;
+                serializering.Serializera(podcasts);
+                if (listViewPodd.InvokeRequired)
+                {
+                    listViewPodd.Invoke(new Action(UppdateraListViewContent));
+                    return;
+                }
+                else
+                {
+                    UppdateraListViewContent();
+                }
+            }
+            catch { }
 
 
         private void listViewPodd_SelectedIndexChanged(object sender, EventArgs e)
@@ -290,6 +354,7 @@ namespace WinForm
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
             SortertaKategori();
+
         }
     }
 }

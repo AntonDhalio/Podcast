@@ -17,7 +17,7 @@ namespace WinForm
         public string tidsIntervall { get; set; }
         public string kategori { get; set; }
        
-        
+
         public string PodcastNamn(string url)
         {
             XmlReader reader = XmlReader.Create(url);
@@ -43,6 +43,6 @@ namespace WinForm
             string stringAntal = antal.ToString();
             return stringAntal;
         }
-        
+       
     }
 }
