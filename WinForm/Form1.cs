@@ -99,7 +99,11 @@ namespace WinForm
             {
                 string namn = podd.namn;
                 var item = this.listViewPodd.FindItemWithText(namn);
-                item.SubItems[1].Text = podd.antalAvsnitt;
+                if(this.listViewPodd.FindItemWithText(namn) != null)
+                {
+                    item.SubItems[1].Text = podd.antalAvsnitt;
+                }
+                
             }
             Debug.WriteLine("Uppdaterad");
         }
@@ -140,16 +144,7 @@ namespace WinForm
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //SerializeraPodcast serializering = new SerializeraPodcast();
-            //List<RSS> allaPoddar = serializering.DeserializeraLista();
-            //var skaSparas = from RSS podd in allaPoddar
-            //                      where podd.namn != namn
-            //                      select podd;
-            //List<RSS> tillfallig = new List<RSS>();
-            //foreach (RSS enPodd in skaSparas)
-            //{
-            //    tillfallig.Add(enPodd);
-            //}
+            
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
@@ -241,14 +236,7 @@ namespace WinForm
 
         private void listViewPodd_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem item = listViewPodd.SelectedItems[0];
-            RSS valdPodd = (from RSS podd in podcasts
-                            where podd.namn == item.Text
-                            select podd).Single();
-            //XmlReader xmlReader = XmlReader.Create(valdPodd.url);
-            textBoxURL.Text = valdPodd.namn;
-            comboBoxFrekvens.Text = valdPodd.tidsIntervall;
-            cbKategorier.Text = valdPodd.kategori;
+            
         }
         public void UppdateraPodcastXml(string intervall)
         {
