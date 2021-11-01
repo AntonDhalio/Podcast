@@ -38,9 +38,13 @@ namespace WinForm
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+
+           
+
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.comboBoxFrekvens = new System.Windows.Forms.ComboBox();
             this.cbKategorier = new System.Windows.Forms.ComboBox();
+
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -65,23 +69,27 @@ namespace WinForm
             this.lblNamn = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+
             // btnPrenumerera
             // 
             this.btnPrenumerera.Location = new System.Drawing.Point(256, 313);
             this.btnPrenumerera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+
             this.btnPrenumerera.Name = "btnPrenumerera";
-            this.btnPrenumerera.Size = new System.Drawing.Size(105, 31);
+            this.btnPrenumerera.Size = new System.Drawing.Size(171, 50);
             this.btnPrenumerera.TabIndex = 1;
             this.btnPrenumerera.Text = "Prenumerera";
             this.btnPrenumerera.UseVisualStyleBackColor = true;
             this.btnPrenumerera.Click += new System.EventHandler(this.btnPrenumerera_Click);
+
             // 
             // btnAndra
             // 
             this.btnAndra.Location = new System.Drawing.Point(376, 313);
             this.btnAndra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+
             this.btnAndra.Name = "btnAndra";
-            this.btnAndra.Size = new System.Drawing.Size(86, 31);
+            this.btnAndra.Size = new System.Drawing.Size(140, 50);
             this.btnAndra.TabIndex = 2;
             this.btnAndra.Text = "Ändra";
             this.btnAndra.UseVisualStyleBackColor = true;
@@ -89,10 +97,12 @@ namespace WinForm
             // 
             // btnDelete
             // 
+
             this.btnDelete.Location = new System.Drawing.Point(477, 313);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(86, 31);
+            this.btnDelete.Size = new System.Drawing.Size(140, 50);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Ta bort";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -101,30 +111,37 @@ namespace WinForm
             // label1
             // 
             this.label1.AutoSize = true;
+
             this.label1.Location = new System.Drawing.Point(31, 234);
+
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 20);
+            this.label1.Size = new System.Drawing.Size(60, 32);
             this.label1.TabIndex = 4;
             this.label1.Text = "URL:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+
             this.label2.Location = new System.Drawing.Point(256, 234);
+
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 20);
+            this.label2.Size = new System.Drawing.Size(252, 32);
             this.label2.TabIndex = 5;
             this.label2.Text = "Uppdateringsfrekvens:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+
             this.label3.Location = new System.Drawing.Point(424, 234);
+
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 20);
+            this.label3.Size = new System.Drawing.Size(108, 32);
             this.label3.TabIndex = 6;
             this.label3.Text = "Kategori:";
             // 
+
             // textBoxURL
             // 
             this.textBoxURL.Location = new System.Drawing.Point(31, 259);
@@ -155,70 +172,87 @@ namespace WinForm
             this.cbKategorier.Name = "cbKategorier";
             this.cbKategorier.Size = new System.Drawing.Size(138, 28);
             this.cbKategorier.TabIndex = 9;
+
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.splitter1.Name = "splitter1";
+
             this.splitter1.Size = new System.Drawing.Size(3, 653);
+
             this.splitter1.TabIndex = 10;
             this.splitter1.TabStop = false;
             // 
             // lbAvsnitt
             // 
             this.lbAvsnitt.FormattingEnabled = true;
+
             this.lbAvsnitt.ItemHeight = 20;
             this.lbAvsnitt.Location = new System.Drawing.Point(32, 401);
             this.lbAvsnitt.Name = "lbAvsnitt";
             this.lbAvsnitt.ScrollAlwaysVisible = true;
             this.lbAvsnitt.Size = new System.Drawing.Size(430, 224);
+
             this.lbAvsnitt.TabIndex = 11;
             this.lbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lbAvsnitt_SelectedIndexChanged_1);
             // 
             // textBox2
             // 
+
             this.textBox2.Location = new System.Drawing.Point(477, 437);
+
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+
             this.textBox2.Size = new System.Drawing.Size(406, 188);
+
             this.textBox2.TabIndex = 12;
             // 
             // lblAvsnitt
             // 
             this.lblAvsnitt.AutoSize = true;
+
             this.lblAvsnitt.Location = new System.Drawing.Point(477, 401);
+
             this.lblAvsnitt.Name = "lblAvsnitt";
-            this.lblAvsnitt.Size = new System.Drawing.Size(0, 20);
+            this.lblAvsnitt.Size = new System.Drawing.Size(0, 32);
             this.lblAvsnitt.TabIndex = 13;
             // 
             // lbKategorier
             // 
             this.lbKategorier.FormattingEnabled = true;
+
             this.lbKategorier.ItemHeight = 20;
             this.lbKategorier.Location = new System.Drawing.Point(623, 36);
             this.lbKategorier.Name = "lbKategorier";
             this.lbKategorier.Size = new System.Drawing.Size(260, 184);
+
             this.lbKategorier.TabIndex = 14;
             this.lbKategorier.SelectedIndexChanged += new System.EventHandler(this.lbKategorier_SelectedIndexChanged);
             // 
             // btnLaggTill
             // 
+
             this.btnLaggTill.Location = new System.Drawing.Point(623, 313);
+
             this.btnLaggTill.Name = "btnLaggTill";
-            this.btnLaggTill.Size = new System.Drawing.Size(91, 31);
+            this.btnLaggTill.Size = new System.Drawing.Size(148, 50);
             this.btnLaggTill.TabIndex = 15;
             this.btnLaggTill.Text = "Lägg till";
             this.btnLaggTill.UseVisualStyleBackColor = true;
+
             this.btnLaggTill.Click += new System.EventHandler(this.btnLaggTill_Click_1);
             // 
             // btnAndra2
             // 
             this.btnAndra2.Location = new System.Drawing.Point(720, 313);
+
             this.btnAndra2.Name = "btnAndra2";
-            this.btnAndra2.Size = new System.Drawing.Size(79, 31);
+            this.btnAndra2.Size = new System.Drawing.Size(128, 50);
             this.btnAndra2.TabIndex = 16;
             this.btnAndra2.Text = "Ändra";
             this.btnAndra2.UseVisualStyleBackColor = true;
@@ -226,9 +260,11 @@ namespace WinForm
             // 
             // btnDelete2
             // 
+
             this.btnDelete2.Location = new System.Drawing.Point(805, 313);
+
             this.btnDelete2.Name = "btnDelete2";
-            this.btnDelete2.Size = new System.Drawing.Size(77, 31);
+            this.btnDelete2.Size = new System.Drawing.Size(125, 50);
             this.btnDelete2.TabIndex = 17;
             this.btnDelete2.Text = "Ta bort";
             this.btnDelete2.UseVisualStyleBackColor = true;
@@ -236,17 +272,22 @@ namespace WinForm
             // 
             // tbKategori
             // 
+
             this.tbKategori.Location = new System.Drawing.Point(623, 258);
+
             this.tbKategori.Name = "tbKategori";
-            this.tbKategori.Size = new System.Drawing.Size(174, 27);
+            this.tbKategori.Size = new System.Drawing.Size(280, 39);
             this.tbKategori.TabIndex = 18;
+            this.tbKategori.TextChanged += new System.EventHandler(this.tbKategori_TextChanged);
             // 
             // lblKategori
             // 
             this.lblKategori.AutoSize = true;
+
             this.lblKategori.Location = new System.Drawing.Point(623, 234);
+
             this.lblKategori.Name = "lblKategori";
-            this.lblKategori.Size = new System.Drawing.Size(52, 20);
+            this.lblKategori.Size = new System.Drawing.Size(84, 32);
             this.lblKategori.TabIndex = 19;
             this.lblKategori.Text = "Namn:";
             // 
@@ -356,8 +397,9 @@ namespace WinForm
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(914, 653);
             this.Controls.Add(this.lblNamn);
@@ -368,6 +410,7 @@ namespace WinForm
             this.Controls.Add(this.lblAvsLista);
             this.Controls.Add(this.lblKatLista);
             this.Controls.Add(this.listViewPodd);
+
             this.Controls.Add(this.lblKategori);
             this.Controls.Add(this.tbKategori);
             this.Controls.Add(this.btnDelete2);
@@ -378,16 +421,20 @@ namespace WinForm
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.lbAvsnitt);
             this.Controls.Add(this.splitter1);
+
             this.Controls.Add(this.cbKategorier);
             this.Controls.Add(this.comboBoxFrekvens);
             this.Controls.Add(this.textBoxURL);
+
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAndra);
             this.Controls.Add(this.btnPrenumerera);
+
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+
             this.Name = "Form1";
             this.Text = "RSS-läsare";
             this.ResumeLayout(false);
@@ -395,7 +442,7 @@ namespace WinForm
 
         }
 
-       
+
 
         #endregion
         private System.Windows.Forms.Button btnPrenumerera;
@@ -404,9 +451,11 @@ namespace WinForm
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+
         private System.Windows.Forms.TextBox textBoxURL;
         private System.Windows.Forms.ComboBox comboBoxFrekvens;
         private System.Windows.Forms.ComboBox cbKategorier;
+
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.TextBox textBox2;
