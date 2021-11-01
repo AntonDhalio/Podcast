@@ -91,6 +91,18 @@ namespace WinForm
                 
             }
         }
+        public void UppdateraListViewContent()
+        {
+            SerializeraPodcast serializering = new SerializeraPodcast();
+            podcasts = serializering.DeserializeraLista();
+            foreach (RSS podd in podcasts)
+            {
+                string namn = podd.namn;
+                var item = this.listViewPodd.FindItemWithText(namn);
+                item.SubItems[1].Text = podd.antalAvsnitt;
+            }
+            Debug.WriteLine("Uppdaterad");
+        }
         public void UppdateraListView()
         {
             listViewPodd.Items.Clear();
@@ -103,7 +115,6 @@ namespace WinForm
                     newItem.SubItems.Add(podd.tidsIntervall);
                     newItem.SubItems.Add(podd.kategori);
                     listViewPodd.Items.Add(newItem);
-                    Debug.WriteLine("Uppdatera");
                 }
             }
         }
@@ -234,7 +245,7 @@ namespace WinForm
             RSS valdPodd = (from RSS podd in podcasts
                             where podd.namn == item.Text
                             select podd).Single();
-            XmlReader xmlReader = XmlReader.Create(valdPodd.url);
+            //XmlReader xmlReader = XmlReader.Create(valdPodd.url);
             textBoxURL.Text = valdPodd.namn;
             comboBoxFrekvens.Text = valdPodd.tidsIntervall;
             cbKategorier.Text = valdPodd.kategori;
@@ -270,9 +281,13 @@ namespace WinForm
                 serializering.Serializera(podcasts);
                 if (listViewPodd.InvokeRequired)
                 {
-                    listViewPodd.Invoke(new Action(LaddaListaPodcast));
+                    listViewPodd.Invoke(new Action(UppdateraListViewContent));
                     return;
-                }               
+                }
+                else
+                {
+                    UppdateraListViewContent();
+                }
             }
             catch { }
         }
