@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace WinForm
 {
     partial class Form1
@@ -169,7 +171,7 @@ namespace WinForm
             this.lbAvsnitt.ScrollAlwaysVisible = true;
             this.lbAvsnitt.Size = new System.Drawing.Size(430, 224);
             this.lbAvsnitt.TabIndex = 11;
-            this.lbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lbAvsnitt_SelectedIndexChanged);
+            this.lbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lbAvsnitt_SelectedIndexChanged_1);
             // 
             // textBox2
             // 
@@ -371,6 +373,8 @@ namespace WinForm
             this.PerformLayout();
 
         }
+
+       
 
         #endregion
         private System.Windows.Forms.Button btnPrenumerera;
