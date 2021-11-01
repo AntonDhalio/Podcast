@@ -135,22 +135,74 @@ namespace WinForm
                 tidsIntervall = comboBoxFrekvens.Text,
                 kategori = cbKategorier.Text
             };
-            podcast.namn = podcast.PodcastNamn(textBoxURL.Text);
+            podcast.namn = textBoxNamn.Text;
             podcast.antalAvsnitt = podcast.AntalAvsnitt(textBoxURL.Text);
             podcasts.Add(podcast);
             SerializeraPodcast serializering = new SerializeraPodcast();
             serializering.Serializera(podcasts);
             LaddaListaPodcast();
             textBoxURL.Clear();
+            textBoxNamn.Clear();
 
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
-
+            if(listViewPodd.SelectedItems.Count > 0)
+            {
+                DialogResult resultat;
+                resultat = MessageBox.Show("Är du säker på att du vill ändra informationen?", "Är du säker?", MessageBoxButtons.YesNo);
+                if (resultat == DialogResult.Yes)
+                {
+                    String poddNamn = listViewPodd.SelectedItems[0].SubItems[0].Text;
+                    RSS valdPodd = (from RSS podd in podcasts
+                                    where podd.namn == poddNamn
+                                    select podd).Single();
+                    if (comboBoxFrekvens.SelectedIndex != -1)
+                    {
+                        valdPodd.tidsIntervall = comboBoxFrekvens.Text;
+                    }
+                    if (cbKategorier.SelectedIndex != -1)
+                    {
+                        valdPodd.kategori = cbKategorier.Text;
+                    }
+                    if (textBoxNamn.TextLength > 0)
+                    {
+                        valdPodd.namn = textBoxNamn.Text;
+                    }
+                    SerializeraPodcast serializera = new SerializeraPodcast();
+                    serializera.Serializera(podcasts);
+                    LaddaListaPodcast();
+                    textBoxNamn.Clear();
+                    comboBoxFrekvens.SelectedIndex = -1;
+                    cbKategorier.SelectedIndex = -1;
+                }
+            } else
+            {
+                MessageBox.Show("Välj en podcast i listan att ändra.");
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            if(listViewPodd.SelectedItems.Count > 0)
+            {
+                String poddNamn = listViewPodd.SelectedItems[0].SubItems[0].Text;
+                DialogResult resultat;
+                resultat = MessageBox.Show("Är du säker på att du vill radera podcasten " + poddNamn
+                + "?" , "Är du säker?", MessageBoxButtons.YesNo);
+                if (resultat == DialogResult.Yes)
+                {
+                    RSS valdPodd = (from RSS podd in podcasts
+                                    where podd.namn == poddNamn
+                                    select podd).Single();
+                    podcasts.Remove(valdPodd);
+                    SerializeraPodcast serializera = new SerializeraPodcast();
+                    serializera.Serializera(podcasts);
+                    LaddaListaPodcast();
+                }
+            } else
+            {
+                MessageBox.Show("Välj en podcast i listan att ta bort.");
+            }
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
@@ -356,6 +408,16 @@ namespace WinForm
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
             SortertaKategori();
+        }
+
+        private void textBoxURL_TextChanged(object sender, EventArgs e)
+        {
+            if(textBoxURL.TextLength > 0)
+            {
+                XmlReader xmlReader = XmlReader.Create(textBoxURL.Text);
+                SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
+                textBoxNamn.Text = syndication.Title.Text;
+            }
         }
     }
 }

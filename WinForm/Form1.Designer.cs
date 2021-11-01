@@ -61,11 +61,13 @@ namespace WinForm
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.uppdelare1 = new System.Windows.Forms.Label();
             this.uppdelare2 = new System.Windows.Forms.Label();
+            this.textBoxNamn = new System.Windows.Forms.TextBox();
+            this.lblNamn = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnPrenumerera
             // 
-            this.btnPrenumerera.Location = new System.Drawing.Point(256, 304);
+            this.btnPrenumerera.Location = new System.Drawing.Point(256, 313);
             this.btnPrenumerera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPrenumerera.Name = "btnPrenumerera";
             this.btnPrenumerera.Size = new System.Drawing.Size(105, 31);
@@ -76,7 +78,7 @@ namespace WinForm
             // 
             // btnAndra
             // 
-            this.btnAndra.Location = new System.Drawing.Point(376, 304);
+            this.btnAndra.Location = new System.Drawing.Point(376, 313);
             this.btnAndra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAndra.Name = "btnAndra";
             this.btnAndra.Size = new System.Drawing.Size(86, 31);
@@ -87,7 +89,7 @@ namespace WinForm
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(477, 304);
+            this.btnDelete.Location = new System.Drawing.Point(477, 313);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 31);
@@ -130,6 +132,7 @@ namespace WinForm
             this.textBoxURL.Name = "textBoxURL";
             this.textBoxURL.Size = new System.Drawing.Size(189, 27);
             this.textBoxURL.TabIndex = 7;
+            this.textBoxURL.TextChanged += new System.EventHandler(this.textBoxURL_TextChanged);
             // 
             // comboBoxFrekvens
             // 
@@ -203,7 +206,7 @@ namespace WinForm
             // 
             // btnLaggTill
             // 
-            this.btnLaggTill.Location = new System.Drawing.Point(623, 304);
+            this.btnLaggTill.Location = new System.Drawing.Point(623, 313);
             this.btnLaggTill.Name = "btnLaggTill";
             this.btnLaggTill.Size = new System.Drawing.Size(91, 31);
             this.btnLaggTill.TabIndex = 15;
@@ -213,7 +216,7 @@ namespace WinForm
             // 
             // btnAndra2
             // 
-            this.btnAndra2.Location = new System.Drawing.Point(720, 304);
+            this.btnAndra2.Location = new System.Drawing.Point(720, 313);
             this.btnAndra2.Name = "btnAndra2";
             this.btnAndra2.Size = new System.Drawing.Size(79, 31);
             this.btnAndra2.TabIndex = 16;
@@ -223,7 +226,7 @@ namespace WinForm
             // 
             // btnDelete2
             // 
-            this.btnDelete2.Location = new System.Drawing.Point(805, 304);
+            this.btnDelete2.Location = new System.Drawing.Point(805, 313);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(77, 31);
             this.btnDelete2.TabIndex = 17;
@@ -274,7 +277,7 @@ namespace WinForm
             // listNamn
             // 
             this.listNamn.Text = "Namn";
-            this.listNamn.Width = 180;
+            this.listNamn.Width = 230;
             // 
             // listAvsnitt
             // 
@@ -289,7 +292,7 @@ namespace WinForm
             // listKategori
             // 
             this.listKategori.Text = "Kategori";
-            this.listKategori.Width = 100;
+            this.listKategori.Width = 120;
             // 
             // lblKatLista
             // 
@@ -335,12 +338,30 @@ namespace WinForm
             this.uppdelare2.Size = new System.Drawing.Size(851, 1);
             this.uppdelare2.TabIndex = 25;
             // 
+            // textBoxNamn
+            // 
+            this.textBoxNamn.Location = new System.Drawing.Point(31, 317);
+            this.textBoxNamn.Name = "textBoxNamn";
+            this.textBoxNamn.Size = new System.Drawing.Size(188, 27);
+            this.textBoxNamn.TabIndex = 26;
+            // 
+            // lblNamn
+            // 
+            this.lblNamn.AutoSize = true;
+            this.lblNamn.Location = new System.Drawing.Point(31, 294);
+            this.lblNamn.Name = "lblNamn";
+            this.lblNamn.Size = new System.Drawing.Size(52, 20);
+            this.lblNamn.TabIndex = 27;
+            this.lblNamn.Text = "Namn:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(914, 653);
+            this.Controls.Add(this.lblNamn);
+            this.Controls.Add(this.textBoxNamn);
             this.Controls.Add(this.uppdelare2);
             this.Controls.Add(this.uppdelare1);
             this.Controls.Add(this.splitter2);
@@ -406,6 +427,8 @@ namespace WinForm
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.Label uppdelare1;
         private System.Windows.Forms.Label uppdelare2;
+        private System.Windows.Forms.TextBox textBoxNamn;
+        private System.Windows.Forms.Label lblNamn;
     }
 }
 
