@@ -164,16 +164,24 @@ namespace WinForm
             if (lbKategorier.SelectedItem != null && tbKategori.Text.Length != 0 && lbKategorier.SelectedIndex != 0)
             {
                 String namn = lbKategorier.SelectedItem.ToString();
-                var fraga = from Kategori enKat in kategorier
-                            where enKat.namn == namn
-                            select enKat;
-                foreach (Kategori kat in fraga)
+                LaddaListaPodcast();
+                var poddar = from RSS podd in podcasts
+                             where podd.kategori == namn
+                             select podd;
+                foreach(RSS enPodd in poddar)
                 {
-                    kat.namn = tbKategori.Text;
+                    enPodd.kategori = tbKategori.Text;
                 }
+                Kategori attAndra = (from Kategori enKat in kategorier
+                            where enKat.namn == namn
+                            select enKat).Single();
+                attAndra.namn = tbKategori.Text;
                 SerializeraKategori serializering = new SerializeraKategori();
                 serializering.Serializera(kategorier);
+                SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
+                serializeraPodcast.Serializera(podcasts);
                 LaddaListaKategori();
+                LaddaListaPodcast();
                 tbKategori.Clear();
             }
             else
