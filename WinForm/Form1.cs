@@ -1,5 +1,4 @@
-﻿using TidsIntervaller;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
@@ -11,27 +10,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Xml;
+using System.Xml.Linq;
+using System.ServiceModel.Syndication;
 
 namespace WinForm
 {
     public partial class Form1 : Form
     {
-        static Inervall skapaIntervaller = new Inervall();
-  
-        RSS test = new RSS();       
-       
+        Intervall intervaller = new Intervall();
+        List<Kategori> kategorier = new List<Kategori>();
+        List<RSS> podcasts = new List<RSS>();
+
         public Form1()
         {
+            
             InitializeComponent();
-            skapaIntervaller.CreateTimers();
-            skapaIntervaller.activateTimer();
+            intervaller.CreateTimers();
+            intervaller.activateTimer();
             LaddaListaKategori();
             LaddaListaPodcast();
             listViewPodd.Sorting = SortOrder.Ascending;
-        }
-
-        List<Kategori> kategorier = new List<Kategori>();
-        List<RSS> podcasts = new List<RSS>();       
+        }     
 
         public void LaddaListaKategori()
         {
@@ -120,7 +120,7 @@ namespace WinForm
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
-            
+            UppdateraPodcastXml("5 sekunder");
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -213,12 +213,36 @@ namespace WinForm
                 MessageBox.Show("Välj en kategori i listan att ta bort");
             }
         }
-      public void UppdateraPodcast()
+
+        private void listViewPodd_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (File.Exists("PodcastLista.xml"))
-            {               
-                
+            ListViewItem item = listViewPodd.SelectedItems[0];
+            RSS valdPodd = (from RSS podd in podcasts
+                            where podd.namn == item.Text
+                            select podd).Single();
+            XmlReader xmlReader = XmlReader.Create(valdPodd.url);
+        }
+      public void UppdateraPodcastXml(string intervall)
+        {
+            XDocument xmlDoc = XDocument.Load("PodcastLista.xml");
+            var items = from item in xmlDoc.Descendants("RSS")
+                        where item.Attribute("tidsIntervall").Value == intervall
+                        select item;
+
+            foreach(XElement itemElement in items)
+            {
+                itemElement.SetAttributeValue("antalAvsnitt", "100");
             }
+
+            //SerializeraPodcast serializering = new SerializeraPodcast();
+            //List<RSS> allaPoddar = serializering.DeserializeraLista();
+            //var poddarAttUppdatera = from RSS podd in allaPoddar
+            //                      where podd.kategori == intervall
+            //                      select podd;
+            //foreach (RSS enPodd in poddarAttUppdatera)
+            //{
+                
+            //}
         }
     }
 }

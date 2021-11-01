@@ -4,14 +4,14 @@ using System.Text;
 using System.Timers;
 using System.Diagnostics;
 
-namespace TidsIntervaller
+namespace WinForm
 {
     public class Intervall
     {
-        public delegate void UpdatePodcasts();
-        //public static event UpdatePodcasts TimerAvklaradShort;
-        //public static event UpdatePodcasts TimerAvklaradMedium;
-        //public static event UpdatePodcasts TimerAvklaradLong;
+        public delegate void UpdatePodcasts(string tidsintervall);
+        public event UpdatePodcasts TimerAvklaradShort;
+        public event UpdatePodcasts TimerAvklaradMedium;
+        public event UpdatePodcasts TimerAvklaradLong;
 
         public static Timer shortTimer;
         public static Timer mediumTimer;
@@ -40,19 +40,19 @@ namespace TidsIntervaller
         public void OnTimedEvent1(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 5 sekunder");
-            // TimerAvklaradShort();
+            //TimerAvklaradShort("5 sekunder");
         }
 
         public void OnTimedEvent2(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 30 sekunder");
-            // TimerAvklaradMedium();
+            //TimerAvklaradMedium("30 sekunder");
         }
 
         public void OnTimedEvent3(Object source, System.Timers.ElapsedEventArgs e)
         {
             Debug.WriteLine("Det har gått 60 sekunder");
-            // TimerAvklaradLong();
+            //TimerAvklaradLong("60 sekunder");
         }
     }
 }
