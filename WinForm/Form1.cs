@@ -13,6 +13,8 @@ using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
 using System.ServiceModel.Syndication;
+using System.Xml.Serialization;
+using System.Threading;
 
 namespace WinForm
 {
@@ -24,13 +26,15 @@ namespace WinForm
 
         public Form1()
         {
-            
             InitializeComponent();
             intervaller.CreateTimers();
             intervaller.activateTimer();
             LaddaListaKategori();
             LaddaListaPodcast();
             listViewPodd.Sorting = SortOrder.Ascending;
+            intervaller.TimerAvklaradShort += UppdateraPodcastXml;
+            intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
+            intervaller.TimerAvklaradLong += UppdateraPodcastXml;
         }     
 
         public void LaddaListaKategori()
@@ -98,7 +102,8 @@ namespace WinForm
                     newItem.SubItems.Add(podd.antalAvsnitt);
                     newItem.SubItems.Add(podd.tidsIntervall);
                     newItem.SubItems.Add(podd.kategori);
-                    listViewPodd.Items.Add(newItem);                    
+                    listViewPodd.Items.Add(newItem);
+                    Debug.WriteLine("Uppdatera");
                 }
             }
         }
@@ -120,11 +125,20 @@ namespace WinForm
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
-            UppdateraPodcastXml("5 sekunder");
+           
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            //SerializeraPodcast serializering = new SerializeraPodcast();
+            //List<RSS> allaPoddar = serializering.DeserializeraLista();
+            //var skaSparas = from RSS podd in allaPoddar
+            //                      where podd.namn != namn
+            //                      select podd;
+            //List<RSS> tillfallig = new List<RSS>();
+            //foreach (RSS enPodd in skaSparas)
+            //{
+            //    tillfallig.Add(enPodd);
+            //}
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
@@ -221,28 +235,46 @@ namespace WinForm
                             where podd.namn == item.Text
                             select podd).Single();
             XmlReader xmlReader = XmlReader.Create(valdPodd.url);
+            textBoxURL.Text = valdPodd.namn;
+            comboBoxFrekvens.Text = valdPodd.tidsIntervall;
+            cbKategorier.Text = valdPodd.kategori;
         }
-      public void UppdateraPodcastXml(string intervall)
+        public void UppdateraPodcastXml(string intervall)
         {
-            XDocument xmlDoc = XDocument.Load("PodcastLista.xml");
-            var items = from item in xmlDoc.Descendants("RSS")
-                        where item.Attribute("tidsIntervall").Value == intervall
-                        select item;
+            try {
+                SerializeraPodcast serializering = new SerializeraPodcast();
+                List<RSS> allaPoddar = serializering.DeserializeraLista();
+                var skaEjUppdateras = from RSS podd in allaPoddar
+                                      where podd.tidsIntervall != intervall
+                                      select podd;
+                var skaUppdateras = from RSS podd in allaPoddar
+                                    where podd.tidsIntervall == intervall
+                                    select podd;
+                List<RSS> tillfallig = new List<RSS>();
+                foreach (RSS enPodd in skaEjUppdateras)
+                {
+                    tillfallig.Add(enPodd);
+                }
+                foreach (RSS podd in skaUppdateras)
+                {
+                    RSS podcast = new RSS();
+                    podcast.url = podd.url;
+                    podcast.tidsIntervall = podd.tidsIntervall;
+                    podcast.kategori = podd.kategori;
+                    podcast.namn = podd.namn;
+                    podcast.antalAvsnitt = podcast.AntalAvsnitt(podd.url);
+                    tillfallig.Add(podcast);
 
-            foreach(XElement itemElement in items)
-            {
-                itemElement.SetAttributeValue("antalAvsnitt", "100");
+                }
+                podcasts = tillfallig;
+                serializering.Serializera(podcasts);
+                if (listViewPodd.InvokeRequired)
+                {
+                    listViewPodd.Invoke(new Action(LaddaListaPodcast));
+                    return;
+                }               
             }
-
-            //SerializeraPodcast serializering = new SerializeraPodcast();
-            //List<RSS> allaPoddar = serializering.DeserializeraLista();
-            //var poddarAttUppdatera = from RSS podd in allaPoddar
-            //                      where podd.kategori == intervall
-            //                      select podd;
-            //foreach (RSS enPodd in poddarAttUppdatera)
-            //{
-                
-            //}
+            catch { }
         }
     }
 }
