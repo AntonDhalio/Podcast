@@ -8,5 +8,6 @@ namespace WinForm
     {
         public String AvsnittsNamn { get; set; }
         public String Beskrivning { get; set; }
+        public int Index { get; set; }
     }
 }

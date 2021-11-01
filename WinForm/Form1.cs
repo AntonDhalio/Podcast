@@ -321,6 +321,7 @@ namespace WinForm
 
         private void listViewPodd_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int index = 0;
             if (listViewPodd.SelectedItems.Count > 0)
             {
                 lbAvsnitt.Items.Clear();
@@ -336,21 +337,43 @@ namespace WinForm
                     Avsnitt ettAvsnitt = new Avsnitt
                     {
                         AvsnittsNamn = ettitem.Title.Text,
-                        Beskrivning = ettitem.Summary.Text
+                        Beskrivning = ettitem.Summary.Text,
+                        Index = index++
                     };
                     avsnitt.Add(ettAvsnitt);
                     lbAvsnitt.Items.Add(ettAvsnitt.AvsnittsNamn);
+
                 }
             }
         }
 
         private void lbAvsnitt_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            Avsnitt avs = (from Avsnitt ettAvs in avsnitt
+            var avs = from Avsnitt ettAvs in avsnitt
                            where ettAvs.AvsnittsNamn == lbAvsnitt.SelectedItem.ToString()
-                           select ettAvs).Single();
-            lblAvsnitt.Text = avs.AvsnittsNamn;
-            textBox2.Text = avs.Beskrivning;
+                           select ettAvs;
+            int index = lbAvsnitt.SelectedIndex;
+
+            if (avs.Count() > 1) 
+            {
+                foreach (Avsnitt ettAvsnitt in avs)
+                {
+                    if (ettAvsnitt.Index == index)
+                    {
+                        lblAvsnitt.Text = ettAvsnitt.AvsnittsNamn;
+                        textBox2.Text = ettAvsnitt.Beskrivning;
+                    }
+                }
+            }
+            else
+            {
+                foreach( Avsnitt ettAvsnitt in avs)
+                {
+                    lblAvsnitt.Text = ettAvsnitt.AvsnittsNamn;
+                    textBox2.Text = ettAvsnitt.Beskrivning;
+                }
+            }
+            
         }
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
