@@ -141,21 +141,32 @@ namespace WinForm
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+                return;
             }
 
-            var uppdateringsFrekvens = comboBoxFrekvens.SelectedItem.ToString();
-
+            int indexFrekvens = comboBoxFrekvens.SelectedIndex;           
             try
             {
-                new UppdateringsFrekvensValidering (uppdateringsFrekvens);
-
-
+                new UppdateraComboBox(indexFrekvens);
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+                return;
             }
             
+            int indexKategori = cbKategorier.SelectedIndex;
+            try
+            {
+                new UppdateraComboBox(indexKategori);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+
+
             RSS podcast = new RSS
             {
                 url = textBoxURL.Text,

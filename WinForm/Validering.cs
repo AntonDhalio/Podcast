@@ -25,17 +25,16 @@ namespace WinForm
 
     }
 
-    public class UppdateringsFrekvensValidering
+    public class UppdateraComboBox
     {
-        public UppdateringsFrekvensValidering(string uppdateringsFrekvens)
+        public UppdateraComboBox(int index)
         {
            
-            if (string.IsNullOrWhiteSpace(uppdateringsFrekvens))
+            if (index == -1)
             {
                 throw new EmptyInputException();
             }
         }
-        //string.SelectedIndex == -1
     }
         public class UrlValidering
         {
@@ -44,6 +43,7 @@ namespace WinForm
                 if (string.IsNullOrEmpty(url))
                 {
                     throw new EmptyInputException();
+                    
                 }
 
 
