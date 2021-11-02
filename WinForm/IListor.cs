@@ -4,8 +4,9 @@ using System.Text;
 
 namespace WinForm
 {
-    interface Iinterface
+    interface IListor
     {
-        String namn { get; set; }
+
+        public void LaddaLista(Form1 form1);
     }
 }

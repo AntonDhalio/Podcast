@@ -21,9 +21,9 @@ namespace WinForm
 {
     public partial class Form1 : Form
     {
+        KategoriLista kategoriLista1 = new KategoriLista();
+        RssLista rssLista1 = new RssLista();
         Intervall intervaller = new Intervall();
-        List<Kategori> kategorier = new List<Kategori>();
-        List<RSS> podcasts = new List<RSS>();
         List<Avsnitt> avsnitt = new List<Avsnitt>();
         SerializeraKategori serializeraKategori = new SerializeraKategori();
         SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
@@ -33,67 +33,46 @@ namespace WinForm
             InitializeComponent();
             intervaller.CreateTimers();
             intervaller.activateTimer();
-            LaddaListaKategori();
-            LaddaListaPodcast();
+            kategoriLista1.LaddaLista(this);
+            rssLista1.LaddaLista(this);
             listViewPodd.Sorting = SortOrder.Ascending;
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
             intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
             intervaller.TimerAvklaradLong += UppdateraPodcastXml;
         }
 
-        public void LaddaListaKategori()
-        {
-            if (File.Exists("Kategorier.xml"))
-            {
-                kategorier.Clear();
-                kategorier = serializeraKategori.DeserializeraLista();
-                UppdateralbKategorier();
-                UppdateraCbKategorier();
-
-            }
-            else
-            {
-                lbKategorier.Items.Add("Kategorilistan är tom");
-            }
-        }
-
         public void UppdateralbKategorier()
         {
             lbKategorier.Items.Clear();
-            if (kategorier != null)
+            if (kategoriLista1.lista != null)
             {
                 lbKategorier.Items.Insert(0, "Visa alla");
-                foreach (Kategori enKategori in kategorier)
+                foreach (Kategori enKategori in kategoriLista1.lista)
                 {
                     lbKategorier.Items.Add(enKategori.namn);
                 }
+            } else
+            {
+                lbKategorier.Items.Add("Kategorilistan är tom");
             }
         }
 
         public void UppdateraCbKategorier()
         {
             cbKategorier.Items.Clear();
-            if (kategorier != null)
+            List<Kategori> enLista = kategoriLista1.lista;
+            if (enLista != null)
             {
-                foreach (Kategori enKategori in kategorier)
+                foreach (Kategori enKategori in enLista)
                 {
                     cbKategorier.Items.Add(enKategori.namn);
                 }
             }
         }
-        public void LaddaListaPodcast()
-        {
-            if (File.Exists("PodcastLista.xml"))
-            {
-                podcasts.Clear();
-                podcasts = serializeraPodcast.DeserializeraLista();
-                UppdateraListView();
-            }
-        }
         public void UppdateraListViewContent()
         {
-            podcasts = serializeraPodcast.DeserializeraLista();
-            foreach (RSS podd in podcasts)
+            rssLista1.lista = serializeraPodcast.DeserializeraLista();
+            foreach (RSS podd in rssLista1.lista)
             {
                 string namn = podd.namn;
                 var item = this.listViewPodd.FindItemWithText(namn);
@@ -108,9 +87,9 @@ namespace WinForm
         public void UppdateraListView()
         {
             listViewPodd.Items.Clear();
-            if (podcasts != null)
+            if (rssLista1.lista != null)
             {
-                foreach (RSS podd in podcasts)
+                foreach (RSS podd in rssLista1.lista)
                 {
                     ListViewItem newItem = new ListViewItem(podd.namn);
                     newItem.SubItems.Add(podd.antalAvsnitt);
@@ -124,7 +103,7 @@ namespace WinForm
         private void btnPrenumerera_Click(object sender, EventArgs e)
         {
             bool namnLedigt = true;
-            foreach(RSS podd in podcasts)
+            foreach(RSS podd in rssLista1.lista)
             {
                 if(podd.namn.Equals(textBoxNamn.Text))
                 {
@@ -141,9 +120,9 @@ namespace WinForm
                 };
                 podcast.namn = textBoxNamn.Text;
                 podcast.antalAvsnitt = podcast.AntalAvsnitt(textBoxURL.Text);
-                podcasts.Add(podcast);
-                serializeraPodcast.Serializera(podcasts);
-                LaddaListaPodcast();
+                rssLista1.lista.Add(podcast);
+                serializeraPodcast.Serializera(rssLista1.lista);
+                rssLista1.LaddaLista(this);
                 textBoxURL.Clear();
                 textBoxNamn.Clear();
             } else
@@ -162,7 +141,7 @@ namespace WinForm
                 if (resultat == DialogResult.Yes)
                 {
                     String poddNamn = listViewPodd.SelectedItems[0].SubItems[0].Text;
-                    RSS valdPodd = (from RSS podd in podcasts
+                    RSS valdPodd = (from RSS podd in rssLista1.lista
                                     where podd.namn == poddNamn
                                     select podd).Single();
                     if (comboBoxFrekvens.SelectedIndex != -1)
@@ -177,8 +156,8 @@ namespace WinForm
                     {
                         valdPodd.namn = textBoxNamn.Text;
                     }
-                    serializeraPodcast.Serializera(podcasts);
-                    LaddaListaPodcast();
+                    serializeraPodcast.Serializera(rssLista1.lista);
+                    rssLista1.LaddaLista(this);
                     textBoxNamn.Clear();
                     comboBoxFrekvens.SelectedIndex = -1;
                     cbKategorier.SelectedIndex = -1;
@@ -188,33 +167,68 @@ namespace WinForm
                 MessageBox.Show("Välj en podcast i listan att ändra.");
             }
         }
-        private void btnDelete_Click(object sender, EventArgs e)
+        public void Radera(ListView listView, List<RSS> rssLista)
         {
-            if(listViewPodd.SelectedItems.Count > 0)
+            if (listView.SelectedItems.Count > 0)
             {
-                String poddNamn = listViewPodd.SelectedItems[0].SubItems[0].Text;
+                String poddNamn = listView.SelectedItems[0].SubItems[0].Text;
                 DialogResult resultat;
                 resultat = MessageBox.Show("Är du säker på att du vill radera podcasten " + poddNamn
-                + "?" , "Är du säker?", MessageBoxButtons.YesNo);
+                + "?", "Är du säker?", MessageBoxButtons.YesNo);
                 if (resultat == DialogResult.Yes)
                 {
-                    RSS valdPodd = (from RSS podd in podcasts
+                    RSS valdPodd = (from RSS podd in rssLista
                                     where podd.namn == poddNamn
                                     select podd).Single();
-                    podcasts.Remove(valdPodd);
-                    serializeraPodcast.Serializera(podcasts);
-                    LaddaListaPodcast();
+                    rssLista.Remove(valdPodd);
+                    serializeraPodcast.Serializera(rssLista);
+                    rssLista1.LaddaLista(this);
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Välj en podcast i listan att ta bort.");
             }
+        }
+        public void Radera(ListBox listBox, List<Kategori> kategoriLista, List<RSS> rssLista)
+        {
+            if (listBox.SelectedItem != null && listBox.SelectedIndex != 0)
+            {
+                DialogResult resultat;
+                resultat = MessageBox.Show("Är du säker på att du vill radera kategorin " + listBox.SelectedItem.ToString()
+                    + "? Alla sparade poddar med kategorin kommer också att raderas.", "Är du säker?", MessageBoxButtons.YesNo);
+                if (resultat == DialogResult.Yes)
+                {
+                    List<RSS> allaPoddar = serializeraPodcast.DeserializeraLista();
+                    String namn = listBox.SelectedItem.ToString();
+                    Kategori attTabort = (from Kategori enKat in kategoriLista
+                                          where enKat.namn == namn
+                                          select enKat).Single();
+                    var poddarAttBehalla = (from RSS podd in allaPoddar
+                                            where podd.kategori != namn
+                                            select podd).ToList();
+                    rssLista = poddarAttBehalla;
+                    kategoriLista.Remove(attTabort);
+                    serializeraKategori.Serializera(kategoriLista);
+                    serializeraPodcast.Serializera(rssLista);
+                    kategoriLista1.LaddaLista(this);
+                    rssLista1.LaddaLista(this);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Välj en kategori i listan att ta bort");
+            }
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Radera(listViewPodd, rssLista1.lista);
         }
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
         {
             bool namnLedigt = true;
-            foreach (Kategori enKat in kategorier)
+            foreach (Kategori enKat in kategoriLista1.lista)
             {
                 if (tbKategori.Text.ToLower().Equals(enKat.namn.ToLower()))
                 {
@@ -227,9 +241,9 @@ namespace WinForm
                 {
                     namn = tbKategori.Text
                 };
-                kategorier.Add(kategori);
-                serializeraKategori.Serializera(kategorier);
-                LaddaListaKategori();
+                kategoriLista1.lista.Add(kategori);
+                serializeraKategori.Serializera(kategoriLista1.lista);
+                kategoriLista1.LaddaLista(this);
                 tbKategori.Clear();
             }
             else
@@ -243,22 +257,22 @@ namespace WinForm
             if (lbKategorier.SelectedItem != null && tbKategori.Text.Length != 0 && lbKategorier.SelectedIndex != 0)
             {
                 String namn = lbKategorier.SelectedItem.ToString();
-                LaddaListaPodcast();
-                var poddar = from RSS podd in podcasts
+                rssLista1.LaddaLista(this);
+                var poddar = from RSS podd in rssLista1.lista
                              where podd.kategori == namn
                              select podd;
                 foreach (RSS enPodd in poddar)
                 {
                     enPodd.kategori = tbKategori.Text;
                 }
-                Kategori attAndra = (from Kategori enKat in kategorier
+                Kategori attAndra = (from Kategori enKat in kategoriLista1.lista
                                      where enKat.namn == namn
                                      select enKat).Single();
                 attAndra.namn = tbKategori.Text;
-                serializeraKategori.Serializera(kategorier);
-                serializeraPodcast.Serializera(podcasts);
-                LaddaListaKategori();
-                LaddaListaPodcast();
+                serializeraKategori.Serializera(kategoriLista1.lista);
+                serializeraPodcast.Serializera(rssLista1.lista);
+                kategoriLista1.LaddaLista(this);
+                rssLista1.LaddaLista(this);
                 tbKategori.Clear();
             }
             else
@@ -269,33 +283,7 @@ namespace WinForm
 
         private void btnDelete2_Click_1(object sender, EventArgs e)
         {
-            if (lbKategorier.SelectedItem != null && lbKategorier.SelectedIndex != 0)
-            {
-                DialogResult resultat;
-                resultat = MessageBox.Show("Är du säker på att du vill radera kategorin " + lbKategorier.SelectedItem.ToString()
-                    + "? Alla sparade poddar med kategorin kommer också att raderas.", "Är du säker?", MessageBoxButtons.YesNo);
-                if (resultat == DialogResult.Yes)
-                {
-                    List<RSS> allaPoddar = serializeraPodcast.DeserializeraLista();
-                    String namn = lbKategorier.SelectedItem.ToString();
-                    Kategori attTabort = (from Kategori enKat in kategorier
-                                          where enKat.namn == namn
-                                          select enKat).Single();
-                    var poddarAttBehalla = (from RSS podd in allaPoddar
-                                           where podd.kategori != namn
-                                           select podd).ToList();
-                    podcasts = poddarAttBehalla;
-                    kategorier.Remove(attTabort);
-                    serializeraKategori.Serializera(kategorier);
-                    serializeraPodcast.Serializera(podcasts);
-                    LaddaListaKategori();
-                    LaddaListaPodcast();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Välj en kategori i listan att ta bort");
-            }
+            Radera(lbKategorier, kategoriLista1.lista, rssLista1.lista);
         }
 
         public void UppdateraPodcastXml(string intervall)
@@ -325,8 +313,8 @@ namespace WinForm
                     tillfallig.Add(podcast);
 
                 }
-                podcasts = tillfallig;
-                serializeraPodcast.Serializera(podcasts);
+                rssLista1.lista = tillfallig;
+                serializeraPodcast.Serializera(rssLista1.lista);
                 if (listViewPodd.InvokeRequired)
                 {
                     listViewPodd.Invoke(new Action(UppdateraListViewContent));
@@ -348,7 +336,7 @@ namespace WinForm
                 lbAvsnitt.Items.Clear();
                 avsnitt.Clear();
                 ListViewItem item = listViewPodd.SelectedItems[0];
-                RSS valdPodd = (from RSS podd in podcasts
+                RSS valdPodd = (from RSS podd in rssLista1.lista
                                 where podd.namn == item.SubItems[0].Text
                                 select podd).Single();
                 XmlReader xmlReader = XmlReader.Create(valdPodd.url);
@@ -397,17 +385,17 @@ namespace WinForm
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LaddaListaPodcast();
+            rssLista1.LaddaLista(this);
             if (lbKategorier.SelectedIndex == 0)
             {
                 UppdateraListView();
             }
             else
             {
-                var poddarAttVisa = (from RSS podd in podcasts
+                var poddarAttVisa = (from RSS podd in rssLista1.lista
                                      where podd.kategori.ToLower() == lbKategorier.SelectedItem.ToString().ToLower()
                                      select podd).ToList();
-                podcasts = poddarAttVisa;
+                rssLista1.lista = poddarAttVisa;
                 UppdateraListView();
             }
         }

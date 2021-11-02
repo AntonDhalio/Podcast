@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WinForm
 {
-    public class Avsnitt: Iinterface
+    public class Avsnitt
     {
         public String namn { get; set; }
         public String Beskrivning { get; set; }
