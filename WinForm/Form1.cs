@@ -245,6 +245,20 @@ namespace WinForm
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
         {
+            string KategoriNamn = tbKategori.Text;
+
+            try
+            {
+                new KategoriValidering(KategoriNamn);
+
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+
             bool namnLedigt = true;
             foreach (Kategori enKat in kategorier)
             {
@@ -269,6 +283,10 @@ namespace WinForm
             {
                 MessageBox.Show("Kategorinamnet finns redan, vänlig välj ett annat");
             }
+
+            
+
+           
         }
 
         private void btnAndra2_Click_1(object sender, EventArgs e)
@@ -488,21 +506,5 @@ namespace WinForm
 
         }
 
-        private void btnLaggTill_Click(object sender, EventArgs e)
-        {
-            
-            string KategoriNamn = tbKategori.Text;
-          
-            try
-            {
-                new KategoriValidering(KategoriNamn);
-
-                //Spara kategori namn om validering gick bra 
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
     }
 }
