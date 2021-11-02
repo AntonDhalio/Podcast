@@ -148,9 +148,6 @@ namespace WinForm
                 }
             }
             if (namnLedigt) {
-
-            RSS podcast = new RSS
-            {
                 RSS podcast = new RSS
                 {
                     url = textBoxURL.Text,
@@ -168,8 +165,6 @@ namespace WinForm
             {
                 MessageBox.Show("Det finns redan en podcast med namnet " + textBoxNamn.Text + ", vänligen välj ett annat.");
             }
-            
-
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
@@ -387,7 +382,7 @@ namespace WinForm
 
         public void SortertaKategori()
         {
-            LaddaListaPodcast();
+            rssLista1.LaddaLista(this);
             if (lbKategorier.SelectedIndex == 0)
             {
                 UppdateraListView();
@@ -398,15 +393,10 @@ namespace WinForm
             }
             else
             {
-                var fraga = from RSS podd in podcasts
+                var attVisa = (from RSS podd in rssLista1.lista
                             where podd.kategori.ToLower() == lbKategorier.SelectedItem.ToString().ToLower()
-                            select podd;
-                List<RSS> tillfallig = new List<RSS>();
-                foreach (RSS enPodd in fraga)
-                {
-                    tillfallig.Add(enPodd);
-                }
-                podcasts = tillfallig;
+                            select podd).ToList();
+                rssLista1.lista = attVisa;
                 UppdateraListView();
             }
         }
