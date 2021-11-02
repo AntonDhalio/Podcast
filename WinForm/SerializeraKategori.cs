@@ -6,7 +6,7 @@ using System.IO;
 
 namespace WinForm
 {
-    class SerializeraKategori: XmlSerializering
+    class SerializeraKategori
     {
         public void Serializera (List<Kategori> kategorier)
         {

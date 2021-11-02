@@ -13,29 +13,22 @@ namespace WinForm
         public event UpdatePodcasts TimerAvklaradMedium;
         public event UpdatePodcasts TimerAvklaradLong;
 
+        public static Timer timer;
         public static Timer shortTimer;
         public static Timer mediumTimer;
         public static Timer longTimer;
 
-        public void CreateTimers()
+        public virtual void CreateTimer()
         {
-            shortTimer = new System.Timers.Timer();
-            shortTimer.Interval = 1000 * 5;
-            shortTimer.Enabled = true;
-
-            mediumTimer = new System.Timers.Timer();
-            mediumTimer.Interval = 1000 * 30;
-            mediumTimer.Enabled = true;
-
-            longTimer = new System.Timers.Timer();
-            longTimer.Interval = 1000 * 60;
-            longTimer.Enabled = true;
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Enabled = true;
         }
-        public void activateTimer()
-        {
+        public void ActivateTimer()
+        {         
             shortTimer.Elapsed += OnTimedEvent1;
             mediumTimer.Elapsed += OnTimedEvent2;
-            longTimer.Elapsed += OnTimedEvent3;
+            longTimer.Elapsed += OnTimedEvent3;          
         }
         public void OnTimedEvent1(Object source, System.Timers.ElapsedEventArgs e)
         {

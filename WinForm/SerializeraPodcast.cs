@@ -6,7 +6,7 @@ using System.IO;
 
 namespace WinForm
 {
-    class SerializeraPodcast : XmlSerializering
+    class SerializeraPodcast
     {
         public void Serializera(List<RSS> podcasts)
         {

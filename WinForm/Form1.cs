@@ -28,13 +28,21 @@ namespace WinForm
         List<Avsnitt> avsnitt = new List<Avsnitt>();
         SerializeraKategori serializeraKategori = new SerializeraKategori();
         SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
+        Intervall shortT = new ShortTimer();
+        Intervall mediumT = new MediumTimer();
+        Intervall longT = new LongTimer();
+
+
 
         public Form1()
         {
             InitializeComponent();
             SkapaAsync();
-            intervaller.CreateTimers();
-            intervaller.activateTimer();
+            intervaller.CreateTimer();
+            shortT.CreateTimer();
+            mediumT.CreateTimer();
+            longT.CreateTimer();
+            intervaller.ActivateTimer();
             listViewPodd.Sorting = SortOrder.Ascending;
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
             intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
