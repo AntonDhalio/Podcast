@@ -6,7 +6,7 @@ namespace WinForm
 {
     public class Avsnitt
     {
-        public String AvsnittsNamn { get; set; }
+        public String namn { get; set; }
         public String Beskrivning { get; set; }
         public int Index { get; set; }
     }
