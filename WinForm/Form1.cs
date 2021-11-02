@@ -489,16 +489,5 @@ namespace WinForm
                 }
             }
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbKategori_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
