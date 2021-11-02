@@ -8,7 +8,7 @@ namespace WinForm
 {
     class XmlSerializering
     {
-        public void Serializera(List<object> enLista, String sokVag)
+        public virtual void Serializera(List<object> enLista, String sokVag)
         {
             if (File.Exists(sokVag))
             {
@@ -21,7 +21,7 @@ namespace WinForm
                 xmlSerializer.Serialize(fileStream, enLista);
             }
         }
-        public List<object> DeserializeraLista(String sokVag)
+        public virtual List<object> DeserializeraLista(String sokVag)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<object>));
             using (FileStream fileStream = new FileStream(sokVag, FileMode.Open, FileAccess.Read))
