@@ -6,7 +6,6 @@ namespace WinForm
 {
     interface IListor
     {
-
         public void LaddaLista(Form1 form1);
     }
 }
