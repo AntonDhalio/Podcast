@@ -8,7 +8,7 @@ using System.Diagnostics;
 namespace WinForm
 {
     [Serializable]
-    public class RSS
+    public class RSS: Iinterface
     {
         
         public string url { get; set; }

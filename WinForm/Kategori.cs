@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace WinForm
 {
     [Serializable]
-    public class Kategori
+    public class Kategori: Iinterface
     {
         
         public String namn { get; set; }
