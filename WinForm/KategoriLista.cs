@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WinForm
 {
@@ -23,6 +24,19 @@ namespace WinForm
                 form1.UppdateraCbKategorier();
 
             }
+        }
+        public async Task LaddaListaAsync(Form1 form1)
+        {
+                await Task.Run(() =>
+                {
+                lista = new List<Kategori>();
+                    if (File.Exists("Kategorier.xml"))
+                    {
+                        lista.Clear();
+                        SerializeraKategori serializeraKategori = new SerializeraKategori();
+                        lista = serializeraKategori.DeserializeraLista();
+                    }
+                });
         }
     }
 }

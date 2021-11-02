@@ -32,15 +32,26 @@ namespace WinForm
         public Form1()
         {
             InitializeComponent();
+            SkapaAsync();
             intervaller.CreateTimers();
             intervaller.activateTimer();
-            kategoriLista1.LaddaLista(this);
-            rssLista1.LaddaLista(this);
             listViewPodd.Sorting = SortOrder.Ascending;
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
             intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
             intervaller.TimerAvklaradLong += UppdateraPodcastXml;
+            
         }
+
+        public async Task SkapaAsync()
+        {
+            Task laddaListaKategori = kategoriLista1.LaddaListaAsync(this);
+            Task laddaListaRss = rssLista1.LaddaListaAsync(this);
+            await Task.WhenAll(laddaListaKategori, laddaListaRss);
+            UppdateralbKategorier();
+            UppdateraCbKategorier();
+            UppdateraListView();
+        }
+
 
         public void UppdateralbKategorier()
         {
