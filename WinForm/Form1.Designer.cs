@@ -67,8 +67,8 @@ namespace WinForm
             // 
             // btnPrenumerera
             // 
-            this.btnPrenumerera.Location = new System.Drawing.Point(256, 313);
-            this.btnPrenumerera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrenumerera.Location = new System.Drawing.Point(189, 198);
+            this.btnPrenumerera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrenumerera.Name = "btnPrenumerera";
             this.btnPrenumerera.Size = new System.Drawing.Size(105, 31);
             this.btnPrenumerera.TabIndex = 1;
@@ -78,8 +78,8 @@ namespace WinForm
             // 
             // btnAndra
             // 
-            this.btnAndra.Location = new System.Drawing.Point(376, 313);
-            this.btnAndra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAndra.Location = new System.Drawing.Point(339, 196);
+            this.btnAndra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAndra.Name = "btnAndra";
             this.btnAndra.Size = new System.Drawing.Size(86, 31);
             this.btnAndra.TabIndex = 2;
@@ -89,8 +89,8 @@ namespace WinForm
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(477, 313);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Location = new System.Drawing.Point(469, 196);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(86, 31);
             this.btnDelete.TabIndex = 3;
@@ -101,7 +101,8 @@ namespace WinForm
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 234);
+            this.label1.Location = new System.Drawing.Point(19, 146);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 20);
             this.label1.TabIndex = 4;
@@ -110,7 +111,8 @@ namespace WinForm
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 234);
+            this.label2.Location = new System.Drawing.Point(269, 141);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 20);
             this.label2.TabIndex = 5;
@@ -119,7 +121,8 @@ namespace WinForm
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(424, 234);
+            this.label3.Location = new System.Drawing.Point(469, 141);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 6;
@@ -127,10 +130,10 @@ namespace WinForm
             // 
             // textBoxURL
             // 
-            this.textBoxURL.Location = new System.Drawing.Point(31, 259);
-            this.textBoxURL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxURL.Location = new System.Drawing.Point(19, 162);
+            this.textBoxURL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxURL.Name = "textBoxURL";
-            this.textBoxURL.Size = new System.Drawing.Size(189, 27);
+            this.textBoxURL.Size = new System.Drawing.Size(118, 27);
             this.textBoxURL.TabIndex = 7;
             this.textBoxURL.TextChanged += new System.EventHandler(this.textBoxURL_TextChanged);
             // 
@@ -141,19 +144,19 @@ namespace WinForm
             "5 sekunder",
             "30 sekunder",
             "60 sekunder"});
-            this.comboBoxFrekvens.Location = new System.Drawing.Point(256, 258);
-            this.comboBoxFrekvens.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxFrekvens.Location = new System.Drawing.Point(339, 164);
+            this.comboBoxFrekvens.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxFrekvens.Name = "comboBoxFrekvens";
-            this.comboBoxFrekvens.Size = new System.Drawing.Size(138, 28);
+            this.comboBoxFrekvens.Size = new System.Drawing.Size(86, 28);
             this.comboBoxFrekvens.TabIndex = 8;
             // 
             // cbKategorier
             // 
             this.cbKategorier.FormattingEnabled = true;
-            this.cbKategorier.Location = new System.Drawing.Point(424, 258);
-            this.cbKategorier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbKategorier.Location = new System.Drawing.Point(469, 161);
+            this.cbKategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbKategorier.Name = "cbKategorier";
-            this.cbKategorier.Size = new System.Drawing.Size(138, 28);
+            this.cbKategorier.Size = new System.Drawing.Size(86, 28);
             this.cbKategorier.TabIndex = 9;
             // 
             // splitter1
@@ -161,7 +164,7 @@ namespace WinForm
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 653);
+            this.splitter1.Size = new System.Drawing.Size(2, 534);
             this.splitter1.TabIndex = 10;
             this.splitter1.TabStop = false;
             // 
@@ -169,27 +172,30 @@ namespace WinForm
             // 
             this.lbAvsnitt.FormattingEnabled = true;
             this.lbAvsnitt.ItemHeight = 20;
-            this.lbAvsnitt.Location = new System.Drawing.Point(32, 401);
+            this.lbAvsnitt.Location = new System.Drawing.Point(13, 273);
+            this.lbAvsnitt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbAvsnitt.Name = "lbAvsnitt";
             this.lbAvsnitt.ScrollAlwaysVisible = true;
-            this.lbAvsnitt.Size = new System.Drawing.Size(430, 224);
+            this.lbAvsnitt.Size = new System.Drawing.Size(268, 224);
             this.lbAvsnitt.TabIndex = 11;
             this.lbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lbAvsnitt_SelectedIndexChanged_1);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(477, 437);
+            this.textBox2.Location = new System.Drawing.Point(294, 273);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(406, 188);
+            this.textBox2.Size = new System.Drawing.Size(636, 232);
             this.textBox2.TabIndex = 12;
             // 
             // lblAvsnitt
             // 
             this.lblAvsnitt.AutoSize = true;
-            this.lblAvsnitt.Location = new System.Drawing.Point(477, 401);
+            this.lblAvsnitt.Location = new System.Drawing.Point(294, 251);
+            this.lblAvsnitt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAvsnitt.Name = "lblAvsnitt";
             this.lblAvsnitt.Size = new System.Drawing.Size(0, 20);
             this.lblAvsnitt.TabIndex = 13;
@@ -198,15 +204,17 @@ namespace WinForm
             // 
             this.lbKategorier.FormattingEnabled = true;
             this.lbKategorier.ItemHeight = 20;
-            this.lbKategorier.Location = new System.Drawing.Point(623, 36);
+            this.lbKategorier.Location = new System.Drawing.Point(673, 35);
+            this.lbKategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbKategorier.Name = "lbKategorier";
-            this.lbKategorier.Size = new System.Drawing.Size(260, 184);
+            this.lbKategorier.Size = new System.Drawing.Size(292, 104);
             this.lbKategorier.TabIndex = 14;
             this.lbKategorier.SelectedIndexChanged += new System.EventHandler(this.lbKategorier_SelectedIndexChanged);
             // 
             // btnLaggTill
             // 
-            this.btnLaggTill.Location = new System.Drawing.Point(623, 313);
+            this.btnLaggTill.Location = new System.Drawing.Point(673, 196);
+            this.btnLaggTill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLaggTill.Name = "btnLaggTill";
             this.btnLaggTill.Size = new System.Drawing.Size(91, 31);
             this.btnLaggTill.TabIndex = 15;
@@ -216,7 +224,8 @@ namespace WinForm
             // 
             // btnAndra2
             // 
-            this.btnAndra2.Location = new System.Drawing.Point(720, 313);
+            this.btnAndra2.Location = new System.Drawing.Point(797, 194);
+            this.btnAndra2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAndra2.Name = "btnAndra2";
             this.btnAndra2.Size = new System.Drawing.Size(79, 31);
             this.btnAndra2.TabIndex = 16;
@@ -226,7 +235,8 @@ namespace WinForm
             // 
             // btnDelete2
             // 
-            this.btnDelete2.Location = new System.Drawing.Point(805, 313);
+            this.btnDelete2.Location = new System.Drawing.Point(904, 193);
+            this.btnDelete2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(77, 31);
             this.btnDelete2.TabIndex = 17;
@@ -236,15 +246,18 @@ namespace WinForm
             // 
             // tbKategori
             // 
-            this.tbKategori.Location = new System.Drawing.Point(623, 258);
+            this.tbKategori.Location = new System.Drawing.Point(673, 162);
+            this.tbKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbKategori.Name = "tbKategori";
             this.tbKategori.Size = new System.Drawing.Size(174, 27);
             this.tbKategori.TabIndex = 18;
+            this.tbKategori.TextChanged += new System.EventHandler(this.tbKategori_TextChanged);
             // 
             // lblKategori
             // 
             this.lblKategori.AutoSize = true;
-            this.lblKategori.Location = new System.Drawing.Point(623, 234);
+            this.lblKategori.Location = new System.Drawing.Point(673, 139);
+            this.lblKategori.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKategori.Name = "lblKategori";
             this.lblKategori.Size = new System.Drawing.Size(52, 20);
             this.lblKategori.TabIndex = 19;
@@ -264,11 +277,11 @@ namespace WinForm
             this.listViewPodd.HideSelection = false;
             this.listViewPodd.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
-            this.listViewPodd.Location = new System.Drawing.Point(31, 16);
-            this.listViewPodd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listViewPodd.Location = new System.Drawing.Point(19, 10);
+            this.listViewPodd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listViewPodd.MultiSelect = false;
             this.listViewPodd.Name = "listViewPodd";
-            this.listViewPodd.Size = new System.Drawing.Size(531, 204);
+            this.listViewPodd.Size = new System.Drawing.Size(536, 129);
             this.listViewPodd.TabIndex = 20;
             this.listViewPodd.UseCompatibleStateImageBehavior = false;
             this.listViewPodd.View = System.Windows.Forms.View.Details;
@@ -298,7 +311,8 @@ namespace WinForm
             // 
             this.lblKatLista.AutoSize = true;
             this.lblKatLista.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblKatLista.Location = new System.Drawing.Point(621, 13);
+            this.lblKatLista.Location = new System.Drawing.Point(673, 11);
+            this.lblKatLista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKatLista.Name = "lblKatLista";
             this.lblKatLista.Size = new System.Drawing.Size(103, 22);
             this.lblKatLista.TabIndex = 21;
@@ -308,7 +322,8 @@ namespace WinForm
             // 
             this.lblAvsLista.AutoSize = true;
             this.lblAvsLista.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAvsLista.Location = new System.Drawing.Point(32, 376);
+            this.lblAvsLista.Location = new System.Drawing.Point(13, 249);
+            this.lblAvsLista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAvsLista.Name = "lblAvsLista";
             this.lblAvsLista.Size = new System.Drawing.Size(70, 22);
             this.lblAvsLista.TabIndex = 22;
@@ -316,39 +331,44 @@ namespace WinForm
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(3, 0);
+            this.splitter2.Location = new System.Drawing.Point(2, 0);
+            this.splitter2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(11, 653);
+            this.splitter2.Size = new System.Drawing.Size(7, 534);
             this.splitter2.TabIndex = 23;
             this.splitter2.TabStop = false;
             // 
             // uppdelare1
             // 
             this.uppdelare1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.uppdelare1.Location = new System.Drawing.Point(593, 16);
+            this.uppdelare1.Location = new System.Drawing.Point(652, 23);
+            this.uppdelare1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uppdelare1.Name = "uppdelare1";
-            this.uppdelare1.Size = new System.Drawing.Size(1, 345);
+            this.uppdelare1.Size = new System.Drawing.Size(1, 216);
             this.uppdelare1.TabIndex = 24;
             // 
             // uppdelare2
             // 
             this.uppdelare2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.uppdelare2.Location = new System.Drawing.Point(31, 360);
+            this.uppdelare2.Location = new System.Drawing.Point(19, 239);
+            this.uppdelare2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uppdelare2.Name = "uppdelare2";
-            this.uppdelare2.Size = new System.Drawing.Size(851, 1);
+            this.uppdelare2.Size = new System.Drawing.Size(780, 1);
             this.uppdelare2.TabIndex = 25;
             // 
             // textBoxNamn
             // 
-            this.textBoxNamn.Location = new System.Drawing.Point(31, 317);
+            this.textBoxNamn.Location = new System.Drawing.Point(19, 198);
+            this.textBoxNamn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNamn.Name = "textBoxNamn";
-            this.textBoxNamn.Size = new System.Drawing.Size(188, 27);
+            this.textBoxNamn.Size = new System.Drawing.Size(117, 27);
             this.textBoxNamn.TabIndex = 26;
             // 
             // lblNamn
             // 
             this.lblNamn.AutoSize = true;
-            this.lblNamn.Location = new System.Drawing.Point(31, 294);
+            this.lblNamn.Location = new System.Drawing.Point(19, 184);
+            this.lblNamn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNamn.Name = "lblNamn";
             this.lblNamn.Size = new System.Drawing.Size(52, 20);
             this.lblNamn.TabIndex = 27;
@@ -359,7 +379,7 @@ namespace WinForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(914, 653);
+            this.ClientSize = new System.Drawing.Size(990, 534);
             this.Controls.Add(this.lblNamn);
             this.Controls.Add(this.textBoxNamn);
             this.Controls.Add(this.uppdelare2);
@@ -387,7 +407,7 @@ namespace WinForm
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAndra);
             this.Controls.Add(this.btnPrenumerera);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "RSS-läsare";
             this.ResumeLayout(false);
@@ -395,7 +415,7 @@ namespace WinForm
 
         }
 
-       
+
 
         #endregion
         private System.Windows.Forms.Button btnPrenumerera;
@@ -404,9 +424,11 @@ namespace WinForm
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+
         private System.Windows.Forms.TextBox textBoxURL;
         private System.Windows.Forms.ComboBox comboBoxFrekvens;
         private System.Windows.Forms.ComboBox cbKategorier;
+
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.TextBox textBox2;

@@ -23,13 +23,6 @@ namespace WinForm
             XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             return feed.Title.Text;
-            
-
-            //foreach(SyndicationItem item in feed.Items)
-            //{
-            //    Debug.WriteLine(item.Title.Text);
-            //    Debug.WriteLine("->" + item.Summary.Text);
-            //}
         }
         public string AntalAvsnitt(string url)
         {

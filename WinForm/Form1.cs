@@ -17,6 +17,7 @@ using System.Xml.Serialization;
 using System.Threading;
 
 
+
 namespace WinForm
 {
     public partial class Form1 : Form
@@ -102,6 +103,42 @@ namespace WinForm
 
         private void btnPrenumerera_Click(object sender, EventArgs e)
         {
+
+            string urlPodcast = textBoxURL.Text;
+
+            try
+            {
+                new UrlValidering(urlPodcast);
+
+                //Validera uppdateringsfekvens o kategori
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+
+            int indexFrekvens = comboBoxFrekvens.SelectedIndex;           
+            try
+            {
+                new UppdateraComboBox(indexFrekvens);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+            
+            int indexKategori = cbKategorier.SelectedIndex;
+            try
+            {
+                new UppdateraComboBox(indexKategori);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
             bool namnLedigt = true;
             foreach(RSS podd in rssLista1.lista)
             {
@@ -110,7 +147,9 @@ namespace WinForm
                     namnLedigt = false;
                 }
             }
-            if (namnLedigt)
+            if (namnLedigt) {
+
+            RSS podcast = new RSS
             {
                 RSS podcast = new RSS
                 {
@@ -227,6 +266,20 @@ namespace WinForm
 
         private void btnLaggTill_Click_1(object sender, EventArgs e)
         {
+            string KategoriNamn = tbKategori.Text;
+
+            try
+            {
+                new KategoriValidering(KategoriNamn);
+
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+
             bool namnLedigt = true;
             foreach (Kategori enKat in kategoriLista1.lista)
             {
@@ -250,6 +303,10 @@ namespace WinForm
             {
                 MessageBox.Show("Kategorinamnet finns redan, vänlig välj ett annat");
             }
+
+            
+
+           
         }
 
         private void btnAndra2_Click_1(object sender, EventArgs e)
@@ -328,6 +385,32 @@ namespace WinForm
             catch { }
         }
 
+        public void SortertaKategori()
+        {
+            LaddaListaPodcast();
+            if (lbKategorier.SelectedIndex == 0)
+            {
+                UppdateraListView();
+            }
+            else if (lbKategorier.SelectedItem == null)
+            {
+                Debug.WriteLine("Denna ruta är tom");
+            }
+            else
+            {
+                var fraga = from RSS podd in podcasts
+                            where podd.kategori.ToLower() == lbKategorier.SelectedItem.ToString().ToLower()
+                            select podd;
+                List<RSS> tillfallig = new List<RSS>();
+                foreach (RSS enPodd in fraga)
+                {
+                    tillfallig.Add(enPodd);
+                }
+                podcasts = tillfallig;
+                UppdateraListView();
+            }
+        }
+
         private void listViewPodd_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = 0;
@@ -404,10 +487,28 @@ namespace WinForm
         {
             if(textBoxURL.TextLength > 0)
             {
-                XmlReader xmlReader = XmlReader.Create(textBoxURL.Text);
-                SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
-                textBoxNamn.Text = syndication.Title.Text;
+                try
+                {
+                    XmlReader xmlReader = XmlReader.Create(textBoxURL.Text);
+                    SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
+                    textBoxNamn.Text = syndication.Title.Text;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbKategori_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

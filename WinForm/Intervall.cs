@@ -39,19 +39,16 @@ namespace WinForm
         }
         public void OnTimedEvent1(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Debug.WriteLine("Det har gått 5 sekunder");
             TimerAvklaradShort("5 sekunder");
         }
 
         public void OnTimedEvent2(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Debug.WriteLine("Det har gått 30 sekunder");
             TimerAvklaradMedium("30 sekunder");
         }
 
         public void OnTimedEvent3(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Debug.WriteLine("Det har gått 60 sekunder");
             TimerAvklaradLong("60 sekunder");
         }
     }
