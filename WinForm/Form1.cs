@@ -490,9 +490,16 @@ namespace WinForm
         {
             if(textBoxURL.TextLength > 0)
             {
-                XmlReader xmlReader = XmlReader.Create(textBoxURL.Text);
-                SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
-                textBoxNamn.Text = syndication.Title.Text;
+                try
+                {
+                    XmlReader xmlReader = XmlReader.Create(textBoxURL.Text);
+                    SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
+                    textBoxNamn.Text = syndication.Title.Text;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
 
