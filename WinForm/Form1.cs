@@ -147,7 +147,7 @@ namespace WinForm
 
             try
             {
-                new UrlValidering(uppdateringsFrekvens);
+                new UppdateringsFrekvensValidering (uppdateringsFrekvens);
 
 
             }
@@ -155,6 +155,7 @@ namespace WinForm
             {
                 MessageBox.Show(exception.Message);
             }
+            
             RSS podcast = new RSS
             {
                 url = textBoxURL.Text,

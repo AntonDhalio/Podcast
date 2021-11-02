@@ -25,36 +25,47 @@ namespace WinForm
 
     }
 
-    public class UrlValidering
+    public class UppdateringsFrekvensValidering
     {
-        public UrlValidering(string url)
+        public UppdateringsFrekvensValidering(string uppdateringsFrekvens)
         {
-            if (string.IsNullOrEmpty(url))
+           
+            if (string.IsNullOrWhiteSpace(uppdateringsFrekvens))
             {
                 throw new EmptyInputException();
             }
-
-           // if (SelectedIndex == -1)
-           // {
-             //   throw new EmptyInputException();
-         //   }
-
-            // Kollar om url är en http isf kasta ett exception om att man måste ha https
-            Uri uriResult;
-            bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult);
-
-            if (!result)
+        }
+        //string.SelectedIndex == -1
+    }
+        public class UrlValidering
+        {
+            public UrlValidering(string url)
             {
-                throw new UrlException("Adressen är ingen giltig URL");
-            }
-            if (uriResult.Scheme == Uri.UriSchemeHttp)
-            {
-                throw new UrlException("Adressen måste vara Https");
+                if (string.IsNullOrEmpty(url))
+                {
+                    throw new EmptyInputException();
+                }
+
+
+                // Kollar om url är en http isf kasta ett exception om att man måste ha https
+                Uri uriResult;
+                bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult);
+
+                if (!result)
+                {
+                    throw new UrlException("Adressen är ingen giltig URL");
+                }
+                if (uriResult.Scheme == Uri.UriSchemeHttp)
+                {
+                    throw new UrlException("Adressen måste vara Https");
+                }
+
             }
 
         }
 
-    }
-
+    
 }
+
+
 
