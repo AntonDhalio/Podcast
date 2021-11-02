@@ -409,6 +409,10 @@ namespace WinForm
             {
                 UppdateraListView();
             }
+            else if (lbKategorier.SelectedItem == null)
+            {
+                Debug.WriteLine("Denna ruta är tom");
+            }
             else
             {
                 var fraga = from RSS podd in podcasts
