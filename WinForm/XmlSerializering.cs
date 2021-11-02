@@ -8,24 +8,6 @@ namespace WinForm
 {
     class XmlSerializering
     {
-        public void Serializera(object ettObejkt, String sokVag)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(object));
-            using (FileStream fileStream = new FileStream(sokVag, FileMode.Append, FileAccess.Write))
-            {
-                xmlSerializer.Serialize(fileStream, ettObejkt);
-            }
-        }
-
-        public object Deserializera(String sokVag)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(object));
-            using (FileStream fileStream = new FileStream(sokVag, FileMode.Open, FileAccess.Read))
-            {
-                return (Kategori)xmlSerializer.Deserialize(fileStream);
-            }
-        }
-
         public void Serializera(List<object> enLista, String sokVag)
         {
             if (File.Exists(sokVag))

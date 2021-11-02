@@ -8,22 +8,6 @@ namespace WinForm
 {
     class SerializeraPodcast : XmlSerializering
     {
-        public void Serializera(RSS rss)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(RSS));
-            using (FileStream fileStream = new FileStream("PodcastLista.xml", FileMode.Append, FileAccess.Write))
-            {
-                xmlSerializer.Serialize(fileStream, rss);
-            }
-        }
-        public RSS Deserializera()
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(RSS));
-            using (FileStream fileStream = new FileStream("PodcastLista.xml", FileMode.Open, FileAccess.Read))
-            {
-                return (RSS)xmlSerializer.Deserialize(fileStream);
-            }
-        }
         public void Serializera(List<RSS> podcasts)
         {
             if (File.Exists("PodcastLista.xml"))
