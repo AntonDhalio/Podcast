@@ -180,6 +180,8 @@ namespace WinForm
                 rssLista1.LaddaLista(this);
                 textBoxURL.Clear();
                 textBoxNamn.Clear();
+                comboBoxFrekvens.SelectedIndex = -1;
+                cbKategorier.SelectedIndex = -1;
             } else
             {
                 MessageBox.Show("Det finns redan en podcast med namnet " + textBoxNamn.Text + ", vänligen välj ett annat.");
