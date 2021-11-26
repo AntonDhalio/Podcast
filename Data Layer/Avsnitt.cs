@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WinForm
+namespace Data_Layer
 {
     public class Avsnitt
     {
