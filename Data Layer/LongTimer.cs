@@ -5,7 +5,7 @@ using System.Timers;
 
 namespace Data_Layer
 {
-    class LongTimer : SkapaTimer
+    public class LongTimer : SkapaTimer
     {
         public override void CreateTimer()
         {

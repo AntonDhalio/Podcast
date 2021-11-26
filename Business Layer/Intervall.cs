@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Timers;
 using System.Diagnostics;
+using Data_Layer;
 
 namespace Business_Layer
 {
@@ -18,7 +19,16 @@ namespace Business_Layer
         public static Timer mediumTimer;
         public static Timer longTimer;
 
-      
+        SkapaTimer sT = new ShortTimer();
+        SkapaTimer mT = new MediumTimer();
+        SkapaTimer lT = new LongTimer();
+
+        public void SkapaAllaTimers()
+        {
+            sT.CreateTimer();
+            mT.CreateTimer();
+            lT.CreateTimer();
+        }
         public void ActivateTimer()
         {         
             shortTimer.Elapsed += OnTimedEvent1;
