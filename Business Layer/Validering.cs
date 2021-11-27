@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace WinForm
+namespace Business_Layer
 
 {
     public class KategoriValidering

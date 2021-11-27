@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinForm
+namespace Business_Layer
 {
     class RssLista: IListor
     {
