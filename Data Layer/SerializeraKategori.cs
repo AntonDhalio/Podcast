@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 
+
 namespace Data_Layer
 {
     public class SerializeraKategori

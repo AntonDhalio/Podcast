@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Data_Layer
 {
-    class SerializeraPodcast
+    public class SerializeraPodcast
     {
         public void Serializera(List<RSS> podcasts)
         {

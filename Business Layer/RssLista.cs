@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Data_Layer;
 
 namespace Business_Layer
 {
-    class RssLista: IListor
+    public class RssLista: IListor
     {
         public List<RSS> lista { get; set; }
+        
 
         public void LaddaLista(Form1 form1)
         {

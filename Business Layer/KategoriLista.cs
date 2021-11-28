@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Data_Layer;
 
 namespace Business_Layer
 {
-    class KategoriLista: IListor
+    public class KategoriLista: IListor
     {
-        public List<Data_Layer.Kategori> lista { get; set; } 
+        public List<Kategori> lista { get; set; } 
         
        
         public void LaddaLista(Form1 form1)
         {
-            lista = new List<Data_Layer.Kategori>();
+            lista = new List<Kategori>();
             if (File.Exists("Kategorier.xml"))
             {
                 lista.Clear();
-                Data_Layer.SerializeraKategori serializeraKategori = new SerializeraKategori();
+                SerializeraKategori serializeraKategori = new SerializeraKategori();
                 lista = serializeraKategori.DeserializeraLista();
                 form1.UppdateralbKategorier();
                 form1.UppdateraCbKategorier();

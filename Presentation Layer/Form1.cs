@@ -15,6 +15,8 @@ using System.Xml.Linq;
 using System.ServiceModel.Syndication;
 using System.Xml.Serialization;
 using System.Threading;
+using Business_Layer;
+using Data_Layer;
 
 namespace Presentation_Layer
 {
@@ -26,9 +28,6 @@ namespace Presentation_Layer
         List<Avsnitt> avsnitt = new List<Avsnitt>();
         SerializeraKategori serializeraKategori = new SerializeraKategori();
         SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
-        Intervall shortT = new ShortTimer();
-        Intervall mediumT = new MediumTimer();
-        Intervall longT = new LongTimer();
 
 
 
@@ -36,10 +35,7 @@ namespace Presentation_Layer
         {
             InitializeComponent();
             SkapaAsync();
-            intervaller.CreateTimer();
-            shortT.CreateTimer();
-            mediumT.CreateTimer();
-            longT.CreateTimer();
+            intervaller.SkapaAllaTimers();            
             intervaller.ActivateTimer();
             listViewPodd.Sorting = SortOrder.Ascending;
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
@@ -65,7 +61,7 @@ namespace Presentation_Layer
             if (kategoriLista1.lista != null)
             {
                 lbKategorier.Items.Insert(0, "Visa alla");
-                foreach (Kategori enKategori in kategoriLista1.lista)
+                foreach (Data_Layer.Kategori enKategori in kategoriLista1.lista)
                 {
                     lbKategorier.Items.Add(enKategori.namn);
                 }
@@ -79,7 +75,7 @@ namespace Presentation_Layer
         public void UppdateraCbKategorier()
         {
             cbKategorier.Items.Clear();
-            List<Kategori> enLista = kategoriLista1.lista;
+            List<Data_Layer.Kategori> enLista = kategoriLista1.lista;
             if (enLista != null)
             {
                 foreach (Kategori enKategori in enLista)
