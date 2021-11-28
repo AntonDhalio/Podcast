@@ -1,7 +1,5 @@
 ﻿
-using System;
-
-namespace WinForm
+namespace Presentation_Layer
 {
     partial class Form1
     {

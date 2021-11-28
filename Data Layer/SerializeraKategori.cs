@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Data_Layer
 {
-    class SerializeraKategori
+    public class SerializeraKategori
     {
         public void Serializera (List<Kategori> kategorier)
         {

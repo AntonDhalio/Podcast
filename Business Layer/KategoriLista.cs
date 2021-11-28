@@ -8,17 +8,16 @@ namespace Business_Layer
 {
     class KategoriLista: IListor
     {
-        public List<Kategori> lista { get; set; } 
+        public List<Data_Layer.Kategori> lista { get; set; } 
         
-
-        
+       
         public void LaddaLista(Form1 form1)
         {
-            lista = new List<Kategori>();
+            lista = new List<Data_Layer.Kategori>();
             if (File.Exists("Kategorier.xml"))
             {
                 lista.Clear();
-                SerializeraKategori serializeraKategori = new SerializeraKategori();
+                Data_Layer.SerializeraKategori serializeraKategori = new SerializeraKategori();
                 lista = serializeraKategori.DeserializeraLista();
                 form1.UppdateralbKategorier();
                 form1.UppdateraCbKategorier();

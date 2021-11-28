@@ -16,8 +16,6 @@ using System.ServiceModel.Syndication;
 using System.Xml.Serialization;
 using System.Threading;
 
-
-
 namespace Presentation_Layer
 {
     public partial class Form1 : Form
@@ -47,7 +45,7 @@ namespace Presentation_Layer
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
             intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
             intervaller.TimerAvklaradLong += UppdateraPodcastXml;
-            
+
         }
 
         public async Task SkapaAsync()
@@ -71,7 +69,8 @@ namespace Presentation_Layer
                 {
                     lbKategorier.Items.Add(enKategori.namn);
                 }
-            } else
+            }
+            else
             {
                 lbKategorier.Items.Add("Kategorilistan är tom");
             }
@@ -137,7 +136,7 @@ namespace Presentation_Layer
                 return;
             }
 
-            int indexFrekvens = comboBoxFrekvens.SelectedIndex;           
+            int indexFrekvens = comboBoxFrekvens.SelectedIndex;
             try
             {
                 new UppdateraComboBox(indexFrekvens);
@@ -147,7 +146,7 @@ namespace Presentation_Layer
                 MessageBox.Show(exception.Message);
                 return;
             }
-            
+
             int indexKategori = cbKategorier.SelectedIndex;
             try
             {
@@ -159,14 +158,15 @@ namespace Presentation_Layer
                 return;
             }
             bool namnLedigt = true;
-            foreach(RSS podd in rssLista1.lista)
+            foreach (RSS podd in rssLista1.lista)
             {
-                if(podd.namn.Equals(textBoxNamn.Text))
+                if (podd.namn.Equals(textBoxNamn.Text))
                 {
                     namnLedigt = false;
                 }
             }
-            if (namnLedigt) {
+            if (namnLedigt)
+            {
                 RSS podcast = new RSS
                 {
                     url = textBoxURL.Text,
@@ -182,14 +182,15 @@ namespace Presentation_Layer
                 textBoxNamn.Clear();
                 comboBoxFrekvens.SelectedIndex = -1;
                 cbKategorier.SelectedIndex = -1;
-            } else
+            }
+            else
             {
                 MessageBox.Show("Det finns redan en podcast med namnet " + textBoxNamn.Text + ", vänligen välj ett annat.");
             }
         }
         private void btnAndra_Click(object sender, EventArgs e)
         {
-            if(listViewPodd.SelectedItems.Count > 0)
+            if (listViewPodd.SelectedItems.Count > 0)
             {
                 DialogResult resultat;
                 resultat = MessageBox.Show("Är du säker på att du vill ändra informationen?", "Är du säker?", MessageBoxButtons.YesNo);
@@ -217,7 +218,8 @@ namespace Presentation_Layer
                     comboBoxFrekvens.SelectedIndex = -1;
                     cbKategorier.SelectedIndex = -1;
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Välj en podcast i listan att ändra.");
             }
@@ -320,9 +322,9 @@ namespace Presentation_Layer
                 MessageBox.Show("Kategorinamnet finns redan, vänlig välj ett annat");
             }
 
-            
 
-           
+
+
         }
 
         private void btnAndra2_Click_1(object sender, EventArgs e)
@@ -415,8 +417,8 @@ namespace Presentation_Layer
             else
             {
                 var attVisa = (from RSS podd in rssLista1.lista
-                            where podd.kategori.ToLower() == lbKategorier.SelectedItem.ToString().ToLower()
-                            select podd).ToList();
+                               where podd.kategori.ToLower() == lbKategorier.SelectedItem.ToString().ToLower()
+                               select podd).ToList();
                 rssLista1.lista = attVisa;
                 UppdateraListView();
             }
@@ -456,7 +458,7 @@ namespace Presentation_Layer
                       where ettAvs.namn == lbAvsnitt.SelectedItem.ToString()
                       select ettAvs;
             int index = lbAvsnitt.SelectedIndex;
-            if (avs.Count() > 1) 
+            if (avs.Count() > 1)
             {
                 foreach (Avsnitt ettAvsnitt in avs)
                 {
@@ -469,7 +471,7 @@ namespace Presentation_Layer
             }
             else
             {
-                foreach( Avsnitt ettAvsnitt in avs)
+                foreach (Avsnitt ettAvsnitt in avs)
                 {
                     lblAvsnitt.Text = ettAvsnitt.namn;
                     textBox2.Text = ettAvsnitt.Beskrivning;
@@ -496,7 +498,7 @@ namespace Presentation_Layer
 
         private void textBoxURL_TextChanged(object sender, EventArgs e)
         {
-            if(textBoxURL.TextLength > 0)
+            if (textBoxURL.TextLength > 0)
             {
                 try
                 {
