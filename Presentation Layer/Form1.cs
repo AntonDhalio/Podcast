@@ -439,57 +439,72 @@ namespace Presentation_Layer
 
         private void listViewPodd_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = 0;
-            if (listViewPodd.SelectedItems.Count > 0)
+            try
             {
-                lbAvsnitt.Items.Clear();
-                avsnitt.Clear();
-                ListViewItem item = listViewPodd.SelectedItems[0];
-                RSS valdPodd = (from RSS podd in rssLista1.lista
-                                where podd.namn == item.SubItems[0].Text
-                                select podd).Single();
-                XmlReader xmlReader = XmlReader.Create(valdPodd.url);
-                SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
-                foreach (SyndicationItem ettitem in syndication.Items)
+                int index = 0;
+                if (listViewPodd.SelectedItems.Count > 0)
                 {
-                    Avsnitt ettAvsnitt = new Avsnitt
+                    lbAvsnitt.Items.Clear();
+                    avsnitt.Clear();
+                    ListViewItem item = listViewPodd.SelectedItems[0];
+                    RSS valdPodd = (from RSS podd in rssLista1.lista
+                                    where podd.namn == item.SubItems[0].Text
+                                    select podd).Single();
+                    XmlReader xmlReader = XmlReader.Create(valdPodd.url);
+                    SyndicationFeed syndication = SyndicationFeed.Load(xmlReader);
+                    foreach (SyndicationItem ettitem in syndication.Items)
                     {
-                        namn = ettitem.Title.Text,
-                        Beskrivning = ettitem.Summary.Text,
-                        Index = index++
-                    };
-                    avsnitt.Add(ettAvsnitt);
-                    lbAvsnitt.Items.Add(ettAvsnitt.namn);
+                        Avsnitt ettAvsnitt = new Avsnitt
+                        {
+                            namn = ettitem.Title.Text,
+                            Beskrivning = ettitem.Summary.Text,
+                            Index = index++
+                        };
+                        avsnitt.Add(ettAvsnitt);
+                        lbAvsnitt.Items.Add(ettAvsnitt.namn);
 
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
             }
         }
 
         private void lbAvsnitt_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            var avs = from Avsnitt ettAvs in avsnitt
-                      where ettAvs.namn == lbAvsnitt.SelectedItem.ToString()
-                      select ettAvs;
-            int index = lbAvsnitt.SelectedIndex;
-            if (avs.Count() > 1)
+            try
             {
-                foreach (Avsnitt ettAvsnitt in avs)
+                var avs = from Avsnitt ettAvs in avsnitt
+                          where ettAvs.namn == lbAvsnitt.SelectedItem.ToString()
+                          select ettAvs;
+                int index = lbAvsnitt.SelectedIndex;
+                if (avs.Count() > 1)
                 {
-                    if (ettAvsnitt.Index == index)
+                    foreach (Avsnitt ettAvsnitt in avs)
+                    {
+                        if (ettAvsnitt.Index == index)
+                        {
+                            lblAvsnitt.Text = ettAvsnitt.namn;
+                            textBox2.Text = ettAvsnitt.Beskrivning;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Avsnitt ettAvsnitt in avs)
                     {
                         lblAvsnitt.Text = ettAvsnitt.namn;
                         textBox2.Text = ettAvsnitt.Beskrivning;
                     }
                 }
             }
-            else
+            catch (Exception exception)
             {
-                foreach (Avsnitt ettAvsnitt in avs)
-                {
-                    lblAvsnitt.Text = ettAvsnitt.namn;
-                    textBox2.Text = ettAvsnitt.Beskrivning;
-                }
+                Debug.WriteLine(exception.Message);
             }
+            
         }
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
