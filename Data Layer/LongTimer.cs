@@ -10,7 +10,7 @@ namespace Data_Layer
         public override void CreateTimer()
         {
             longTimer = new Timer();
-            longTimer.Interval = 1000 * 5;
+            longTimer.Interval = 1000 * 60;
             longTimer.Enabled = true;
         }
     }

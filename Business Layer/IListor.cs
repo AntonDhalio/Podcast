@@ -6,6 +6,6 @@ namespace Business_Layer
 {
     interface IListor
     {
-        public void LaddaLista(Form1 form1);
+        public void LaddaLista();
     }
 }

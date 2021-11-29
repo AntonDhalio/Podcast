@@ -12,7 +12,7 @@ namespace Business_Layer
         public List<Kategori> lista { get; set; } 
         
        
-        public void LaddaLista(Form1 form1)
+        public void LaddaLista()
         {
             lista = new List<Kategori>();
             if (File.Exists("Kategorier.xml"))
@@ -20,12 +20,11 @@ namespace Business_Layer
                 lista.Clear();
                 SerializeraKategori serializeraKategori = new SerializeraKategori();
                 lista = serializeraKategori.DeserializeraLista();
-                form1.UppdateralbKategorier();
-                form1.UppdateraCbKategorier();
+                
 
             }
         }
-        public async Task LaddaListaAsync(Form1 form1)
+        public async Task LaddaListaAsync()
         {
                 await Task.Run(() =>
                 {

@@ -12,7 +12,7 @@ namespace Business_Layer
         public List<RSS> lista { get; set; }
         
 
-        public void LaddaLista(Form1 form1)
+        public void LaddaLista()
         {
             lista = new List<RSS>();
             if (File.Exists("PodcastLista.xml"))
@@ -20,10 +20,10 @@ namespace Business_Layer
                 lista.Clear();
                 SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
                 lista = serializeraPodcast.DeserializeraLista();
-                form1.UppdateraListView();
+                
             }
         }
-        public async Task LaddaListaAsync(Form1 form1)
+        public async Task LaddaListaAsync()
         {
             await Task.Run(() =>
             {

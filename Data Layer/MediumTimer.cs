@@ -10,7 +10,7 @@ namespace Data_Layer
         public override void CreateTimer()
         {
             mediumTimer = new Timer();
-            mediumTimer.Interval = 1000 * 5;
+            mediumTimer.Interval = 1000 * 30;
             mediumTimer.Enabled = true;
         }
     }

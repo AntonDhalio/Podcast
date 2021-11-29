@@ -28,15 +28,17 @@ namespace Presentation_Layer
         List<Avsnitt> avsnitt = new List<Avsnitt>();
         SerializeraKategori serializeraKategori = new SerializeraKategori();
         SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
-
+        //ShortTimer shortT = new ShortTimer();
+        //MediumTimer mediumT = new MediumTimer();
+        //LongTimer longT = new LongTimer();
 
 
         public Form1()
         {
             InitializeComponent();
             SkapaAsync();
-            intervaller.SkapaAllaTimers();            
-            intervaller.ActivateTimer();
+            //intervaller.SkapaAllaTimers();            
+            //intervaller.ActivateTimer();
             listViewPodd.Sorting = SortOrder.Ascending;
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
             intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
@@ -46,8 +48,8 @@ namespace Presentation_Layer
 
         public async Task SkapaAsync()
         {
-            Task laddaListaKategori = kategoriLista1.LaddaListaAsync(this);
-            Task laddaListaRss = rssLista1.LaddaListaAsync(this);
+            Task laddaListaKategori = kategoriLista1.LaddaListaAsync();
+            Task laddaListaRss = rssLista1.LaddaListaAsync();
             await Task.WhenAll(laddaListaKategori, laddaListaRss);
             UppdateralbKategorier();
             UppdateraCbKategorier();
@@ -61,7 +63,7 @@ namespace Presentation_Layer
             if (kategoriLista1.lista != null)
             {
                 lbKategorier.Items.Insert(0, "Visa alla");
-                foreach (Data_Layer.Kategori enKategori in kategoriLista1.lista)
+                foreach (Kategori enKategori in kategoriLista1.lista)
                 {
                     lbKategorier.Items.Add(enKategori.namn);
                 }
@@ -173,7 +175,8 @@ namespace Presentation_Layer
                 podcast.antalAvsnitt = podcast.AntalAvsnitt(textBoxURL.Text);
                 rssLista1.lista.Add(podcast);
                 serializeraPodcast.Serializera(rssLista1.lista);
-                rssLista1.LaddaLista(this);
+                rssLista1.LaddaLista();
+
                 textBoxURL.Clear();
                 textBoxNamn.Clear();
                 comboBoxFrekvens.SelectedIndex = -1;
@@ -209,7 +212,8 @@ namespace Presentation_Layer
                         valdPodd.namn = textBoxNamn.Text;
                     }
                     serializeraPodcast.Serializera(rssLista1.lista);
-                    rssLista1.LaddaLista(this);
+                    rssLista1.LaddaLista();
+                    UppdateraListView();
                     textBoxNamn.Clear();
                     comboBoxFrekvens.SelectedIndex = -1;
                     cbKategorier.SelectedIndex = -1;
@@ -235,7 +239,8 @@ namespace Presentation_Layer
                                     select podd).Single();
                     rssLista.Remove(valdPodd);
                     serializeraPodcast.Serializera(rssLista);
-                    rssLista1.LaddaLista(this);
+                    rssLista1.LaddaLista();
+                    UppdateraListView();
                 }
             }
             else
@@ -264,8 +269,11 @@ namespace Presentation_Layer
                     kategoriLista.Remove(attTabort);
                     serializeraKategori.Serializera(kategoriLista);
                     serializeraPodcast.Serializera(rssLista);
-                    kategoriLista1.LaddaLista(this);
-                    rssLista1.LaddaLista(this);
+                    kategoriLista1.LaddaLista();
+                    UppdateralbKategorier();
+                    UppdateraCbKategorier();
+                    rssLista1.LaddaLista();
+                    UppdateraListView();
                 }
             }
             else
@@ -310,7 +318,9 @@ namespace Presentation_Layer
                 };
                 kategoriLista1.lista.Add(kategori);
                 serializeraKategori.Serializera(kategoriLista1.lista);
-                kategoriLista1.LaddaLista(this);
+                kategoriLista1.LaddaLista();
+                UppdateralbKategorier();
+                UppdateraCbKategorier();
                 tbKategori.Clear();
             }
             else
@@ -328,7 +338,8 @@ namespace Presentation_Layer
             if (lbKategorier.SelectedItem != null && tbKategori.Text.Length != 0 && lbKategorier.SelectedIndex != 0)
             {
                 String namn = lbKategorier.SelectedItem.ToString();
-                rssLista1.LaddaLista(this);
+                rssLista1.LaddaLista();
+                UppdateraListView();
                 var poddar = from RSS podd in rssLista1.lista
                              where podd.kategori == namn
                              select podd;
@@ -342,8 +353,11 @@ namespace Presentation_Layer
                 attAndra.namn = tbKategori.Text;
                 serializeraKategori.Serializera(kategoriLista1.lista);
                 serializeraPodcast.Serializera(rssLista1.lista);
-                kategoriLista1.LaddaLista(this);
-                rssLista1.LaddaLista(this);
+                kategoriLista1.LaddaLista();
+                UppdateralbKategorier();
+                UppdateraCbKategorier();
+                rssLista1.LaddaLista();
+                UppdateraListView();
                 tbKategori.Clear();
             }
             else
@@ -401,7 +415,8 @@ namespace Presentation_Layer
 
         public void SortertaKategori()
         {
-            rssLista1.LaddaLista(this);
+            rssLista1.LaddaLista();
+            UppdateraListView();
             if (lbKategorier.SelectedIndex == 0)
             {
                 UppdateraListView();
@@ -477,7 +492,8 @@ namespace Presentation_Layer
 
         private void lbKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rssLista1.LaddaLista(this);
+            rssLista1.LaddaLista();
+            UppdateraListView();
             if (lbKategorier.SelectedIndex == 0)
             {
                 UppdateraListView();
@@ -508,5 +524,7 @@ namespace Presentation_Layer
                 }
             }
         }
+
+        
     }
 }
