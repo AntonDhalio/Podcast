@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Timers;
 
-namespace Data_Layer
+namespace Business_Layer
 {
-    public class LongTimer : SkapaTimer
+    public class LongTimer : Intervall
     {
         public override void CreateTimer()
         {

@@ -19,15 +19,11 @@ namespace Business_Layer
         public static Timer mediumTimer;
         public static Timer longTimer;
 
-        SkapaTimer sT = new ShortTimer();
-        SkapaTimer mT = new MediumTimer();
-        SkapaTimer lT = new LongTimer();
-
-        public void SkapaAllaTimers()
+        public virtual void CreateTimer()
         {
-            sT.CreateTimer();
-            mT.CreateTimer();
-            lT.CreateTimer();
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Enabled = true;
         }
         public void ActivateTimer()
         {         

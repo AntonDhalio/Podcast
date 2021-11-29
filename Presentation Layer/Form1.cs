@@ -28,17 +28,19 @@ namespace Presentation_Layer
         List<Avsnitt> avsnitt = new List<Avsnitt>();
         SerializeraKategori serializeraKategori = new SerializeraKategori();
         SerializeraPodcast serializeraPodcast = new SerializeraPodcast();
-        //ShortTimer shortT = new ShortTimer();
-        //MediumTimer mediumT = new MediumTimer();
-        //LongTimer longT = new LongTimer();
+        ShortTimer shortT = new ShortTimer();
+        MediumTimer mediumT = new MediumTimer();
+        LongTimer longT = new LongTimer();
 
 
         public Form1()
         {
             InitializeComponent();
             SkapaAsync();
-            //intervaller.SkapaAllaTimers();            
-            //intervaller.ActivateTimer();
+            shortT.CreateTimer();
+            mediumT.CreateTimer();
+            longT.CreateTimer();
+            intervaller.ActivateTimer();
             listViewPodd.Sorting = SortOrder.Ascending;
             intervaller.TimerAvklaradShort += UppdateraPodcastXml;
             intervaller.TimerAvklaradMedium += UppdateraPodcastXml;
@@ -176,7 +178,7 @@ namespace Presentation_Layer
                 rssLista1.lista.Add(podcast);
                 serializeraPodcast.Serializera(rssLista1.lista);
                 rssLista1.LaddaLista();
-
+                UppdateraListView();
                 textBoxURL.Clear();
                 textBoxNamn.Clear();
                 comboBoxFrekvens.SelectedIndex = -1;
