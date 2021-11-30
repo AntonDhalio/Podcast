@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Timers;
 
-namespace WinForm
+namespace Business_Layer
 {
-    class LongTimer : Intervall
+    public class LongTimer : Intervall
     {
         public override void CreateTimer()
         {

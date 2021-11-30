@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Validation
+namespace Business_Layer
 {
     [Serializable]
     public class UrlException : Exception
@@ -11,3 +11,4 @@ namespace Validation
 
     }
 }
+
