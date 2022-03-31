@@ -10,7 +10,7 @@ namespace Business_Layer
         public override void CreateTimer()
         {
             mediumTimer = new Timer();
-            mediumTimer.Interval = 1000 * 30;
+            mediumTimer.Interval = 1000 * 40;
             mediumTimer.Enabled = true;
         }
     }
